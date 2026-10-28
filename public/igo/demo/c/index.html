@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Demo C · Negozio veloce</title>
+<style>body{margin:0}</style><script src="../dcmini.js"></script></head>
+<body><script type="text/x-dc-tpl">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..100,400..900&amp;display=swap" />
+<style>
+body{margin:0;background:#F2F3F5}
+a{color:#1260D6}a:hover{color:#0B47A3}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F2F3F5; color: #0E0F12; font-family: 'Archivo', system-ui, sans-serif;">
+
+  <div style="background: #F07F2D; color: #0E0F12; padding: 9px 24px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: center; font-size: 13px;">
+    <strong style="letter-spacing: 0.08em; text-transform: uppercase;">Demo di direzione</strong>
+    <span>Non è il sito finale: serve a darvi un'idea. La demo completa la costruiamo dopo la firma del preventivo.</span>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <button type="button" onClick="{{goHome}}" style="border: 1px solid #0E0F12; background: transparent; color: #0E0F12; border-radius: 4px; padding: 4px 10px; font-size: 12px; font-weight: 700;">Home</button>
+      <button type="button" onClick="{{goCat}}" style="border: 1px solid #0E0F12; background: transparent; color: #0E0F12; border-radius: 4px; padding: 4px 10px; font-size: 12px; font-weight: 700;">Categoria</button>
+      <button type="button" onClick="{{goPdpDefault}}" style="border: 1px solid #0E0F12; background: transparent; color: #0E0F12; border-radius: 4px; padding: 4px 10px; font-size: 12px; font-weight: 700;">Scheda</button>
+      <button type="button" onClick="{{goCart}}" style="border: 1px solid #0E0F12; background: transparent; color: #0E0F12; border-radius: 4px; padding: 4px 10px; font-size: 12px; font-weight: 700;">Carrello</button>
+    </div>
+  </div>
+
+  <header style="background: #0E0F12; color: #FFFFFF;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 24px;">
+      <button type="button" onClick="{{goHome}}" aria-label="Torna alla home" style="border: 0; background: #FFFFFF; border-radius: 6px; padding: 6px 12px; display: flex; align-items: center;"><img src="../img/logo-igo.png" alt="I.GO shopping" style="height: 34px; width: auto;" /></button>
+      <div style="flex: 1 1 420px; min-width: 0; position: relative;">
+        <label style="display: flex; align-items: center; background: #FFFFFF; border-radius: 6px; height: 50px; overflow: hidden;">
+          <span style="position: absolute; left: -9999px;">Cerca prodotti</span>
+          <span style="background: #E4E6EA; color: #0E0F12; height: 100%; display: flex; align-items: center; padding: 0 14px; font-size: 14px; font-weight: 700; white-space: nowrap;">Tutte le categorie</span>
+          <input type="search" value="{{q}}" onChange="{{onQ}}" onFocus="{{openSearch}}" placeholder="Cerca per prodotto, marca o codice ricambio" style="border: 0; outline: none; font: inherit; font-size: 16px; flex: 1; min-width: 0; padding: 0 14px; color: #0E0F12;" />
+          <button type="button" onClick="{{openSearch}}" aria-label="Cerca" style="border: 0; background: #1260D6; height: 100%; width: 60px; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
+        </label>
+        <sc-if value="{{searchOpen}}" hint-placeholder-val="{{ false }}">
+          <div style="position: absolute; z-index: 20; top: 56px; left: 0; right: 0; background: #FFFFFF; color: #0E0F12; border-radius: 8px; box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.5); padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+            <span style="font-size: 14px;">Forse cercavi <strong style="color: #1260D6;">{{fix}}</strong> · {{resultsCount}} risultati</span>
+            <sc-for list="{{results}}" as="p" hint-placeholder-count="3">
+              <button type="button" onClick="{{p.open}}" style="border: 0; background: #F2F3F5; border-radius: 6px; padding: 8px; display: flex; align-items: center; gap: 12px; text-align: left;">
+                <img src="{{p.img}}" alt="" style="width: 48px; height: 48px; object-fit: contain; background: #FFFFFF; border-radius: 4px;" />
+                <span style="flex: 1; min-width: 0; font-size: 15px; font-weight: 600; color: #0E0F12;">{{p.name}}</span>
+                <strong style="font-size: 15px; color: #0E0F12;">{{p.priceS}}</strong>
+              </button>
+            </sc-for>
+            <button type="button" onClick="{{closeSearch}}" style="align-self: flex-end; border: 0; background: transparent; color: #1260D6; font-weight: 700; font-size: 14px; padding: 8px;">Chiudi</button>
+          </div>
+        </sc-if>
+      </div>
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" style="height: 50px; border: 0; background: transparent; color: #FFFFFF; font-size: 14px; font-weight: 700; padding: 0 8px; text-align: left; line-height: 1.2;">Accedi<br /><span style="font-weight: 400; color: #B9BDC5;">ordini e resi</span></button>
+        <button type="button" onClick="{{goCart}}" aria-label="Carrello" style="height: 50px; border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 0 16px; display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 16px;">
+          <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.8a1.5 1.5 0 0 0 1.5-1.1L21 7H6"></path></svg>{{cartCount}} · {{cartTotal}}
+        </button>
+      </div>
+    </div>
+    <nav aria-label="Categorie" style="background: #1E2026;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 0 24px; display: flex; flex-wrap: wrap; gap: 0 4px; font-size: 15px; font-weight: 700;">
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">A spasso</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">In casa</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">Gioco</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">Accessori</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">Marchi</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #F7A66A; padding: 12px 10px; font-size: 15px; font-weight: 800;">Outlet</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">Ricambi</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #FFFFFF; padding: 12px 10px; font-size: 15px; font-weight: 700;">I.GO Sport</button>
+      </div>
+    </nav>
+  </header>
+
+  <div style="background: #FFFFFF; border-bottom: 1px solid #E4E6EA;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 6px 28px; font-size: 14px; font-weight: 600;">
+      <span><span style="color: #1F8A4C;">✓</span> Distributore ufficiale</span>
+      <span><span style="color: #1F8A4C;">✓</span> Paga in 3 rate con Klarna o Scalapay</span>
+      <span><span style="color: #1F8A4C;">✓</span> Spedizione [gratuita sopra X €]</span>
+      <span><span style="color: #1F8A4C;">✓</span> Ricambi originali</span>
+    </div>
+  </div>
+
+  <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+    <div style="background: #DFF3E6; color: #0F4A28;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; font-size: 15px;">
+        <span><strong>✓ Aggiunto:</strong> {{toastName}}</span>
+        <button type="button" onClick="{{goCart}}" style="border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 10px 16px; font-weight: 800; font-size: 14px;">Vai al carrello</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 20px;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(360px, 100%), 1fr)); gap: 14px;">
+        <div style="background: #0E0F12; color: #FFFFFF; border-radius: 8px; padding: 32px; display: flex; flex-direction: column; gap: 14px; justify-content: center; min-height: 260px;">
+          <span style="align-self: flex-start; background: #F07F2D; color: #0E0F12; border-radius: 4px; padding: 5px 10px; font-size: 13px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase;">Promo fino al 31/10</span>
+          <strong style="font-size: 44px; line-height: 1; font-stretch: 80%; font-weight: 900; text-transform: uppercase;">Fino a −30% su Tommee Tippee</strong>
+          <span style="font-size: 17px; color: #C9CCD2;">Twist &amp; Click e preparazione biberon.</span>
+          <button type="button" onClick="{{goCat}}" style="align-self: flex-start; border: 0; background: #FFFFFF; color: #0E0F12; border-radius: 6px; padding: 14px 20px; font-weight: 800; font-size: 15px;">Vedi le offerte</button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+          <button type="button" onClick="{{goCat}}" style="border: 0; background: #F07F2D; color: #0E0F12; border-radius: 8px; padding: 20px; text-align: left; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 120px;"><strong style="font-size: 26px; font-stretch: 80%; font-weight: 900; text-transform: uppercase;">Outlet</strong><span style="font-size: 14px;">Ultimi pezzi a prezzo ridotto</span></button>
+          <button type="button" onClick="{{goCat}}" style="border: 0; background: #FFFFFF; color: #0E0F12; border-radius: 8px; padding: 20px; text-align: left; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 120px;"><strong style="font-size: 26px; font-stretch: 80%; font-weight: 900; text-transform: uppercase;">Ricambi</strong><span style="font-size: 14px;">Cerca per modello o codice</span></button>
+          <button type="button" onClick="{{goCat}}" style="border: 0; background: #FFFFFF; color: #0E0F12; border-radius: 8px; padding: 20px; text-align: left; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 120px;"><strong style="font-size: 26px; font-stretch: 80%; font-weight: 900; text-transform: uppercase;">Seggiolini auto</strong><span style="font-size: 14px;">i-Size, dalla nascita</span></button>
+          <button type="button" onClick="{{goCat}}" style="border: 0; background: #1260D6; color: #FFFFFF; border-radius: 8px; padding: 20px; text-align: left; display: flex; flex-direction: column; justify-content: flex-end; gap: 4px; min-height: 120px;"><strong style="font-size: 26px; font-stretch: 80%; font-weight: 900; text-transform: uppercase;">Passeggini</strong><span style="font-size: 14px;">Leggeri, modulari, da corsa</span></button>
+        </div>
+      </div>
+
+      <section style="background: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 16px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 10px;">
+          <h2 style="margin: 0; font-size: 26px; font-stretch: 85%; font-weight: 900; text-transform: uppercase;">I più venduti</h2>
+          <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #1260D6; font-weight: 800; font-size: 15px; padding: 8px 0;">Tutti i prodotti →</button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px;">
+          <sc-for list="{{best}}" as="p" hint-placeholder-count="5">
+            <div style="border: 1px solid #E4E6EA; border-radius: 8px; padding: 12px; display: flex; flex-direction: column; gap: 8px;">
+              <button type="button" onClick="{{p.open}}" aria-label="Apri {{p.name}}" style="border: 0; background: #FFFFFF; padding: 0; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;"><img src="{{p.img}}" alt="{{p.name}}" style="width: 90%; height: 90%; object-fit: contain;" /></button>
+              <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #5B606B;">{{p.brand}}</span>
+              <button type="button" onClick="{{p.open}}" style="border: 0; background: transparent; padding: 0; text-align: left; font-size: 15px; font-weight: 600; color: #0E0F12; line-height: 1.3;">{{p.name}}</button>
+              <span style="font-size: 13px; color: #5B606B;">★★★★★ [n]</span>
+              <strong style="font-size: 22px; font-weight: 900;">{{p.priceS}}</strong>
+              <span style="font-size: 13px; color: #1F8A4C; font-weight: 700;">Disponibile · 3 rate da {{p.rata}}</span>
+              <button type="button" onClick="{{p.add}}" style="border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 11px; font-weight: 800; font-size: 14px; margin-top: auto;">Aggiungi al carrello</button>
+            </div>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 14px;">
+        <h2 style="margin: 0; font-size: 26px; font-stretch: 85%; font-weight: 900; text-transform: uppercase;">Compra per marca</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr)); gap: 10px;">
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Doona</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Hauck</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">BabyBjörn</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Tommee Tippee</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Leander</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Flow Amsterdam</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Doomoo</button>
+          <button type="button" onClick="{{goCat}}" style="border: 1px solid #E4E6EA; background: #FFFFFF; border-radius: 6px; padding: 18px 10px; font-size: 18px; font-weight: 800; color: #0E0F12;">Igo Baby</button>
+        </div>
+      </section>
+
+      <section style="background: #1260D6; color: #FFFFFF; border-radius: 8px; padding: 22px 26px; display: flex; flex-wrap: wrap; gap: 14px 24px; align-items: center; justify-content: space-between;">
+        <strong style="font-size: 22px; font-weight: 800;">Provate a cercare «passegino» con il refuso: il negozio capisce lo stesso.</strong>
+        <button type="button" onClick="{{tryTypo}}" style="border: 0; background: #FFFFFF; color: #1260D6; border-radius: 6px; padding: 12px 18px; font-weight: 800; font-size: 15px;">Prova la ricerca</button>
+      </section>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isCat}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 16px;">
+      <nav aria-label="Percorso" style="font-size: 14px; color: #5B606B; display: flex; gap: 8px;"><button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 0; color: #1260D6; font-size: 14px;">Home</button><span>›</span><span>A spasso</span></nav>
+      <div style="display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px;">
+        <h1 style="margin: 0; font-size: 40px; font-stretch: 80%; font-weight: 900; text-transform: uppercase;">A spasso <span style="font-size: 18px; font-weight: 600; color: #5B606B; text-transform: none; font-stretch: 100%;">{{catCount}} prodotti nella demo</span></h1>
+        <span style="background: #FFFFFF; border: 1px solid #D5D8DD; border-radius: 6px; padding: 10px 14px; font-size: 14px; font-weight: 700;">Ordina: più venduti ▾</span>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+        <span style="font-size: 14px; font-weight: 800;">Marca:</span>
+        <sc-for list="{{brandFilters}}" as="b" hint-placeholder-count="4">
+          <button type="button" onClick="{{b.toggle}}" style="border: 1px solid {{b.border}}; background: {{b.bg}}; color: {{b.fg}}; border-radius: 6px; padding: 9px 14px; font-weight: 700; font-size: 14px; min-height: 40px;">{{b.name}}</button>
+        </sc-for>
+        <span style="font-size: 14px; font-weight: 800; margin-left: 12px;">Prezzo:</span>
+        <span style="border: 1px solid #D5D8DD; background: #FFFFFF; border-radius: 6px; padding: 9px 14px; font-size: 14px; font-weight: 700;">Fino a 250 €</span>
+        <span style="border: 1px solid #D5D8DD; background: #FFFFFF; border-radius: 6px; padding: 9px 14px; font-size: 14px; font-weight: 700;">Oltre 250 €</span>
+        <span style="border: 1px solid #D5D8DD; background: #FFFFFF; border-radius: 6px; padding: 9px 14px; font-size: 14px; font-weight: 700;">Solo disponibili</span>
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(min(220px, 100%), 1fr)); gap: 12px;">
+        <sc-for list="{{catProducts}}" as="p" hint-placeholder-count="5">
+          <div style="background: #FFFFFF; border-radius: 8px; padding: 14px; display: flex; flex-direction: column; gap: 8px;">
+            <button type="button" onClick="{{p.open}}" aria-label="Apri {{p.name}}" style="border: 0; background: #FFFFFF; padding: 0; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;"><img src="{{p.img}}" alt="{{p.name}}" style="width: 90%; height: 90%; object-fit: contain;" /></button>
+            <span style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: #5B606B;">{{p.brand}} · {{p.sub}}</span>
+            <button type="button" onClick="{{p.open}}" style="border: 0; background: transparent; padding: 0; text-align: left; font-size: 16px; font-weight: 600; color: #0E0F12; line-height: 1.3;">{{p.name}}</button>
+            <strong style="font-size: 24px; font-weight: 900;">{{p.priceS}}</strong>
+            <span style="font-size: 13px; color: #1F8A4C; font-weight: 700;">Disponibile · 3 rate da {{p.rata}}</span>
+            <div style="display: flex; gap: 8px; margin-top: auto;">
+              <button type="button" onClick="{{p.add}}" style="flex: 1; border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 11px; font-weight: 800; font-size: 14px;">Aggiungi</button>
+              <button type="button" aria-label="Confronta" style="border: 1px solid #D5D8DD; background: #FFFFFF; color: #0E0F12; border-radius: 6px; padding: 0 12px; font-weight: 700; font-size: 13px;">Confronta</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isPdp}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 16px;">
+      <nav aria-label="Percorso" style="font-size: 14px; color: #5B606B; display: flex; flex-wrap: wrap; gap: 8px;"><button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 0; color: #1260D6; font-size: 14px;">Home</button><span>›</span><button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 0; color: #1260D6; font-size: 14px;">A spasso</button><span>›</span><span>{{sel.name}}</span></nav>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;">
+        <div style="flex: 1 1 440px; min-width: 0; background: #FFFFFF; border-radius: 8px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;"><img src="{{sel.img}}" alt="{{sel.name}}" style="width: 84%; height: 84%; object-fit: contain;" /></div>
+        <div style="flex: 1 1 360px; min-width: 0; background: #FFFFFF; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 14px;">
+          <span style="font-size: 13px; font-weight: 800; text-transform: uppercase; color: #1260D6;">{{sel.brand}}</span>
+          <h1 style="margin: 0; font-size: 32px; line-height: 1.1; font-weight: 800;">{{sel.name}}</h1>
+          <span style="font-size: 14px; color: #5B606B;">★★★★★ [n recensioni] · Codice [SKU]</span>
+          <strong style="font-size: 40px; font-weight: 900;">{{sel.priceS}}</strong>
+          <span style="font-size: 15px;">oppure <strong>3 rate da {{sel.rata}}</strong> senza interessi</span>
+          <span style="font-size: 15px; color: #1F8A4C; font-weight: 800;">● Disponibile · consegna stimata [data]</span>
+          <button type="button" onClick="{{addSel}}" style="border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 16px; font-weight: 900; font-size: 17px;">Aggiungi al carrello</button>
+          <button type="button" onClick="{{buyNow}}" style="border: 0; background: #F07F2D; color: #0E0F12; border-radius: 6px; padding: 16px; font-weight: 900; font-size: 17px;">Compra ora</button>
+          <div style="display: flex; flex-wrap: wrap; gap: 6px;">
+            <span style="background: #F2F3F5; border-radius: 4px; padding: 6px 10px; font-size: 13px; font-weight: 800;">Apple Pay</span>
+            <span style="background: #F2F3F5; border-radius: 4px; padding: 6px 10px; font-size: 13px; font-weight: 800;">Google Pay</span>
+            <span style="background: #F2F3F5; border-radius: 4px; padding: 6px 10px; font-size: 13px; font-weight: 800;">PayPal</span>
+            <span style="background: #F2F3F5; border-radius: 4px; padding: 6px 10px; font-size: 13px; font-weight: 800;">Klarna</span>
+            <span style="background: #F2F3F5; border-radius: 4px; padding: 6px 10px; font-size: 13px; font-weight: 800;">Scalapay</span>
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;">
+        <section style="flex: 999 1 520px; min-width: 0; background: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 12px;">
+          <h2 style="margin: 0; font-size: 22px; font-weight: 900; text-transform: uppercase; font-stretch: 85%;">In breve</h2>
+          <sc-for list="{{sel.points}}" as="pt" hint-placeholder-count="3">
+            <div style="display: flex; gap: 10px; font-size: 16px; padding: 8px 0; border-bottom: 1px solid #E4E6EA;"><span style="color: #1F8A4C; font-weight: 900;">✓</span>{{pt}}</div>
+          </sc-for>
+        </section>
+        <section style="flex: 1 1 300px; min-width: 0; background: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 10px;">
+          <h2 style="margin: 0; font-size: 22px; font-weight: 900; text-transform: uppercase; font-stretch: 85%;">Ricambi e accessori</h2>
+          <span style="font-size: 15px; line-height: 1.45; color: #3B3F47;">Ruote, capottine, adattatori: trovate i ricambi originali compatibili con questo modello.</span>
+          <button type="button" onClick="{{goCat}}" style="align-self: flex-start; border: 1px solid #0E0F12; background: #FFFFFF; color: #0E0F12; border-radius: 6px; padding: 11px 16px; font-weight: 800; font-size: 14px;">Vedi i ricambi compatibili</button>
+        </section>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isCart}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 20px 24px 48px; display: flex; flex-direction: column; gap: 16px;">
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 14px; font-weight: 800;">
+        <span style="background: #0E0F12; color: #FFFFFF; border-radius: 4px; padding: 8px 12px;">1 · Carrello</span>
+        <span style="background: #FFFFFF; color: #5B606B; border-radius: 4px; padding: 8px 12px;">2 · Dati e spedizione</span>
+        <span style="background: #FFFFFF; color: #5B606B; border-radius: 4px; padding: 8px 12px;">3 · Pagamento</span>
+      </div>
+      <sc-if value="{{cartEmpty}}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border-radius: 8px; padding: 28px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
+          <span style="font-size: 18px;">Il carrello è vuoto. Aggiungete un prodotto per vedere come funziona.</span>
+          <button type="button" onClick="{{addDemo}}" style="border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 14px 20px; font-weight: 800; font-size: 15px;">Aggiungi un Doona X di prova</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{cartFull}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start;">
+          <div style="flex: 999 1 560px; min-width: 0; background: #FFFFFF; border-radius: 8px; padding: 8px 20px; display: flex; flex-direction: column;">
+            <sc-for list="{{cartItems}}" as="c" hint-placeholder-count="1">
+              <div style="display: flex; gap: 16px; align-items: center; padding: 16px 0; border-bottom: 1px solid #E4E6EA;">
+                <img src="{{c.img}}" alt="" style="width: 90px; height: 90px; object-fit: contain;" />
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <strong style="font-size: 16px;">{{c.name}}</strong>
+                  <span style="font-size: 13px; color: #1F8A4C; font-weight: 700;">Disponibile</span>
+                  <div style="display: flex; align-items: center; gap: 8px;">
+                    <button type="button" onClick="{{c.dec}}" aria-label="Togli uno" style="width: 36px; height: 36px; border-radius: 4px; border: 1px solid #D5D8DD; background: #FFFFFF; font-size: 18px; color: #0E0F12;">−</button>
+                    <span style="min-width: 22px; text-align: center; font-weight: 800;">{{c.q}}</span>
+                    <button type="button" onClick="{{c.inc}}" aria-label="Aggiungi uno" style="width: 36px; height: 36px; border-radius: 4px; border: 1px solid #D5D8DD; background: #FFFFFF; font-size: 18px; color: #0E0F12;">+</button>
+                  </div>
+                </div>
+                <strong style="font-size: 20px; font-weight: 900; white-space: nowrap;">{{c.line}}</strong>
+              </div>
+            </sc-for>
+            <div style="padding: 16px 0; display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+              <label style="flex: 1 1 220px; display: flex; flex-direction: column; gap: 6px; font-size: 13px; font-weight: 800;">Codice sconto<input type="text" placeholder="Es. BENVENUTO5" style="border: 1px solid #D5D8DD; border-radius: 6px; height: 44px; padding: 0 12px; font: inherit; font-size: 15px;" /></label>
+              <button type="button" style="align-self: flex-end; height: 44px; border: 1px solid #0E0F12; background: #FFFFFF; color: #0E0F12; border-radius: 6px; padding: 0 16px; font-weight: 800; font-size: 14px;">Applica</button>
+            </div>
+          </div>
+          <aside style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Subtotale</span><strong>{{cartTotal}}</strong></div>
+            <div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Spedizione</span><span style="color: #3B3F47;">[calcolata]</span></div>
+            <div style="border-top: 2px solid #0E0F12; padding-top: 12px; display: flex; justify-content: space-between; align-items: baseline;"><strong style="font-size: 18px; text-transform: uppercase;">Totale</strong><strong style="font-size: 32px; font-weight: 900;">{{cartTotal}}</strong></div>
+            <span style="font-size: 15px;">o <strong>3 rate da {{cartRata}}</strong></span>
+            <button type="button" style="border: 0; background: #1260D6; color: #FFFFFF; border-radius: 6px; padding: 16px; font-weight: 900; font-size: 17px;">Procedi all'acquisto</button>
+            <button type="button" style="border: 0; background: #0E0F12; color: #FFFFFF; border-radius: 6px; padding: 14px; font-weight: 800; font-size: 16px;">Paga con Apple Pay</button>
+            <span style="font-size: 13px; color: #5B606B;">Acquisto anche senza registrazione, in una sola pagina.</span>
+          </aside>
+        </div>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <footer style="background: #0E0F12; color: #B9BDC5;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 26px 24px; display: flex; flex-wrap: wrap; gap: 12px 40px; justify-content: space-between; font-size: 14px;">
+      <span><strong style="color: #FFFFFF;">I.GO Distribution</strong> · Trento</span>
+      <span>Ordini · Resi · Ricambi · Assistenza · igobaby.it</span>
+    </div>
+  </footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2600}}'>
+const PRODUCTS = [
+  { id: 'doona', name: 'Seggiolino auto Doona X', brand: 'Doona', price: 649.9, img: '../img/p-doona-x.jpg', cat: 'spasso', sub: 'Seggiolini auto', keys: 'seggiolino passeggino auto doona', points: ['Seggiolino auto che diventa passeggino', 'Omologazione i-Size (R129)', 'Altezza bambino: 40–83 cm'] },
+  { id: 'runner', name: 'Passeggino Runner 3', brand: 'Hauck', price: 379.9, img: '../img/p-runner-3.jpg', cat: 'spasso', sub: 'Passeggini', keys: 'passeggino runner hauck', points: ['Tre ruote', 'Seduta reclinabile', '[Peso e misure dal catalogo]'] },
+  { id: 'thermy', name: 'Sacco passeggino Thermy Plus', brand: 'Igo Baby', price: 189.9, img: '../img/p-thermy-plus.jpg', cat: 'spasso', sub: 'Sacchi passeggino', keys: 'sacco passeggino thermy inverno', points: ['Sacco invernale I.GO Baby', '[Materiali dal catalogo]'] },
+  { id: 'liki', name: 'Liki Trike S1', brand: 'Doona', price: 229.0, img: '../img/p-liki-trike-s1.jpg', cat: 'spasso', sub: 'Tricicli', keys: 'triciclo liki doona', points: ['Triciclo pieghevole', '[Età dal catalogo]'] },
+  { id: 'marsupio', name: 'Marsupio Harmony', brand: 'BabyBjörn', price: 245.0, img: '../img/p-marsupio-harmony.jpg', cat: 'spasso', sub: 'Marsupi', keys: 'marsupio babybjorn harmony', points: ['Marsupio ergonomico', '[Posizioni dal catalogo]'] },
+  { id: 'prep', name: 'Perfect Prep Pro', brand: 'Tommee Tippee', price: 269.9, img: '../img/p-perfect-prep-pro.jpg', cat: 'casa', sub: 'Biberon', keys: 'biberon prep tommee', points: ['Prepara il biberon alla temperatura giusta'] },
+  { id: 'matty', name: 'Fasciatoio Matty', brand: 'Leander', price: 139.0, img: '../img/p-fasciatoio-matty.jpg', cat: 'casa', sub: 'Fasciatoi', keys: 'fasciatoio matty leander', points: ['Fasciatoio morbido'] },
+  { id: 'moby', name: 'Luce notturna Balena Moby', brand: 'Flow Amsterdam', price: 72.0, img: '../img/p-luce-notturna.jpg', cat: 'casa', sub: 'Luci notturne', keys: 'luce notturna moby balena', points: ['Luce LED per la nanna'] }
+];
+function eur(n) { return n.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+function norm(t) { return (t || '').toLowerCase().replace(/passegin/g, 'passeggin').replace(/segiolin/g, 'seggiolin').trim(); }
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const screen = s.screen || 'home';
+    const cart = s.cart || [];
+    const brands = s.brands || [];
+    const q = s.q === undefined ? '' : s.q;
+    const top = () => { try { window.scrollTo(0, 0); } catch (e) {} };
+    const go = (sc, extra) => () => { this.setState(Object.assign({ screen: sc, toast: null, searchOpen: false }, extra || {})); top(); };
+    const add = (id) => () => {
+      const c = (this.state && this.state.cart) || [];
+      const f = c.find((x) => x.id === id);
+      const n = f ? c.map((x) => (x.id === id ? { id: x.id, q: x.q + 1 } : x)) : c.concat([{ id: id, q: 1 }]);
+      this.setState({ cart: n, toast: id });
+    };
+    const setQ = (id, d) => () => {
+      const c = (this.state && this.state.cart) || [];
+      this.setState({ cart: c.map((x) => (x.id === id ? { id: x.id, q: x.q + d } : x)).filter((x) => x.q > 0) });
+    };
+    const all = PRODUCTS.map((p) => Object.assign({}, p, { priceS: eur(p.price), rata: eur(p.price / 3), open: go('pdp', { sel: p.id }), add: add(p.id) }));
+    const spasso = all.filter((p) => p.cat === 'spasso');
+    const brandNames = spasso.map((p) => p.brand).filter((b, i, a) => a.indexOf(b) === i);
+    const catProducts = brands.length ? spasso.filter((p) => brands.indexOf(p.brand) >= 0) : spasso;
+    const sel = all.find((p) => p.id === (s.sel || 'doona'));
+    const nq = norm(q);
+    const words = nq.split(/\s+/).filter(Boolean);
+    const results = words.length ? all.filter((p) => words.every((w) => p.keys.indexOf(w.slice(0, 6)) >= 0 || p.name.toLowerCase().indexOf(w) >= 0)) : all.slice(0, 3);
+    const items = cart.map((ci) => { const p = all.find((x) => x.id === ci.id); return Object.assign({}, p, { q: ci.q, line: eur(p.price * ci.q), inc: setQ(ci.id, 1), dec: setQ(ci.id, -1) }); });
+    const total = items.reduce((t, i) => t + i.price * i.q, 0);
+    const toastP = s.toast ? all.find((p) => p.id === s.toast) : null;
+    return {
+      isHome: screen === 'home', isCat: screen === 'cat', isPdp: screen === 'pdp', isCart: screen === 'cart',
+      goHome: go('home'), goCat: go('cat'), goCart: go('cart'), goPdpDefault: go('pdp', { sel: 'doona' }),
+      q: q, onQ: (e) => this.setState({ q: e.target.value, searchOpen: true }),
+      openSearch: () => this.setState({ searchOpen: true }), closeSearch: () => this.setState({ searchOpen: false }),
+      tryTypo: () => { this.setState({ q: 'passegino', searchOpen: true }); top(); },
+      searchOpen: !!s.searchOpen, fix: nq || 'passeggino', results: results.slice(0, 4), resultsCount: results.length,
+      best: [all[0], all[1], all[5], all[2], all[3]],
+      catProducts: catProducts, catCount: catProducts.length,
+      brandFilters: brandNames.map((b) => { const on = brands.indexOf(b) >= 0; return { name: b, bg: on ? '#0E0F12' : '#FFFFFF', fg: on ? '#FFFFFF' : '#0E0F12', border: on ? '#0E0F12' : '#D5D8DD', toggle: () => { const cur = (this.state && this.state.brands) || []; this.setState({ brands: cur.indexOf(b) >= 0 ? cur.filter((x) => x !== b) : cur.concat([b]) }); } }; }),
+      sel: sel, addSel: add(sel.id), buyNow: () => { add(sel.id)(); this.setState({ screen: 'cart', toast: null }); top(); },
+      cartItems: items, cartCount: items.reduce((t, i) => t + i.q, 0), cartTotal: eur(total), cartRata: eur(total / 3),
+      cartEmpty: items.length === 0, cartFull: items.length > 0, addDemo: add('doona'),
+      toastOn: !!toastP, toastName: toastP ? toastP.name : ''
+    };
+  }
+}
+</script>
+</body></html>

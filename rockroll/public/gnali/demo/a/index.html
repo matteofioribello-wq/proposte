@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Demo A · Catalogo tecnico</title>
+<style>body{margin:0}</style><script src="../dcmini.js"></script></head>
+<body><script type="text/x-dc-tpl">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600;700&amp;family=Barlow+Condensed:wght@500;600;700&amp;display=swap" />
+<style>
+body{margin:0;background:#FFFFFF}
+a{color:#0A5885}a:hover{color:#073F60}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #FFFFFF; color: #10202C; font-family: 'Barlow', system-ui, sans-serif;">
+
+  <div style="background: #E7F0F6; color: #10202C; padding: 9px 24px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: center; font-size: 14px;">
+    <strong style="letter-spacing: 0.08em; text-transform: uppercase; color: #0A5885;">Demo di direzione</strong>
+    <span>Non è il sito finale: serve a darvi un'idea. La demo completa la costruiamo dopo la firma del preventivo.</span>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <button type="button" onClick="{{goHome}}" style="border: 1px solid #9DB8CA; background: #FFFFFF; color: #10202C; border-radius: 4px; padding: 4px 10px; font-size: 13px;">Home</button>
+      <button type="button" onClick="{{goCat}}" style="border: 1px solid #9DB8CA; background: #FFFFFF; color: #10202C; border-radius: 4px; padding: 4px 10px; font-size: 13px;">Catalogo</button>
+      <button type="button" onClick="{{goPdpDefault}}" style="border: 1px solid #9DB8CA; background: #FFFFFF; color: #10202C; border-radius: 4px; padding: 4px 10px; font-size: 13px;">Scheda</button>
+      <button type="button" onClick="{{goReq}}" style="border: 1px solid #9DB8CA; background: #FFFFFF; color: #10202C; border-radius: 4px; padding: 4px 10px; font-size: 13px;">Richiesta</button>
+    </div>
+  </div>
+
+  <header style="border-bottom: 1px solid #DCE3E8;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 28px;">
+      <button type="button" onClick="{{goHome}}" aria-label="Torna alla home" style="border: 0; background: transparent; padding: 0;"><img src="../img/i82c3910a.png" alt="Gnali Bocia Mondial GB" style="height: 46px; width: auto; display: block;" /></button>
+      <nav aria-label="Menu principale" style="display: flex; flex-wrap: wrap; gap: 4px 24px; font-size: 16px; font-weight: 600;">
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 8px 0; color: #10202C; font-size: 16px; font-weight: 600;">Prodotti</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 8px 0; color: #10202C; font-size: 16px; font-weight: 600;">Settori</button>
+        <button type="button" style="border: 0; background: transparent; padding: 8px 0; color: #10202C; font-size: 16px; font-weight: 600;">Download</button>
+        <button type="button" style="border: 0; background: transparent; padding: 8px 0; color: #10202C; font-size: 16px; font-weight: 600;">Azienda</button>
+        <button type="button" style="border: 0; background: transparent; padding: 8px 0; color: #10202C; font-size: 16px; font-weight: 600;">Contatti</button>
+      </nav>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="border: 1px solid #CBD5DC; border-radius: 4px; padding: 10px 12px; font-size: 14px; font-weight: 700;">IT ▾</span>
+        <button type="button" onClick="{{goReq}}" style="border: 0; background: #E08A1E; color: #10202C; border-radius: 4px; padding: 12px 16px; font-weight: 700; font-size: 15px;">Richiesta d'offerta · {{reqCount}}</button>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+    <div style="background: #FBEBD4; color: #4A2A05;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; font-size: 15px;">
+        <span><strong>Aggiunto alla richiesta:</strong> {{toastCode}}</span>
+        <button type="button" onClick="{{goReq}}" style="border: 0; background: #10202C; color: #FFFFFF; border-radius: 4px; padding: 10px 16px; font-weight: 700; font-size: 14px;">Completa la richiesta</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+    <main>
+      <section style="background: #F3F6F8; border-bottom: 1px solid #DCE3E8;">
+        <div style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center;">
+          <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 20px;">
+            <span style="font-size: 15px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0A5885;">Gas GPL · gas tecnici · acqua</span>
+            <h1 style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-size: clamp(44px, 5.6vw, 72px); line-height: 0.98; font-weight: 700; text-transform: uppercase; color: #10202C; text-wrap: balance;">Regolatori, riduttori e raccordi. Trovate il vostro codice.</h1>
+            <label style="display: flex; align-items: center; background: #FFFFFF; border: 2px solid #0A5885; border-radius: 6px; height: 60px; overflow: hidden;">
+              <span style="position: absolute; left: -9999px;">Cerca per codice o prodotto</span>
+              <input type="search" placeholder="Codice (es. LP350) o nome del prodotto" style="border: 0; outline: none; font: inherit; font-size: 18px; flex: 1; min-width: 0; padding: 0 18px; color: #10202C;" />
+              <button type="button" onClick="{{goPdpDefault}}" style="border: 0; background: #0A5885; color: #FFFFFF; height: 100%; padding: 0 24px; font-weight: 700; font-size: 16px;">Cerca</button>
+            </label>
+            <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 15px;">
+              <span style="color: #4B5B67;">Codici più cercati:</span>
+              <sc-for list="{{products}}" as="p" hint-placeholder-count="4">
+                <button type="button" onClick="{{p.open}}" style="border: 1px solid #CBD5DC; background: #FFFFFF; color: #0A5885; border-radius: 4px; padding: 8px 12px; font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 17px; min-height: 40px;">{{p.code}}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="flex: 1 1 380px; min-width: 0; background: #FFFFFF; border: 1px solid #DCE3E8; border-radius: 8px; padding: 24px; display: flex; flex-direction: column; gap: 12px; align-items: center;">
+            <img src="../img/i199bc73e.jpg" alt="Regolatore LP350" style="width: 100%; max-width: 360px; height: 240px; object-fit: contain;" />
+            <div style="align-self: stretch; display: flex; justify-content: space-between; align-items: baseline; border-top: 1px solid #DCE3E8; padding-top: 12px; gap: 12px;">
+              <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 26px; font-weight: 700; color: #0A5885;">LP350</span>
+              <span style="font-size: 15px; color: #33434F;">Regolatore BP · IMQ EN 16129</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="max-width: 1240px; margin: 0 auto; padding: 40px 24px; display: flex; flex-direction: column; gap: 18px;">
+        <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px;">
+          <h2 style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-size: 36px; text-transform: uppercase;">Le famiglie di prodotto</h2>
+          <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #0A5885; font-weight: 700; font-size: 16px; padding: 8px 0;">Tutto il catalogo →</button>
+        </div>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(270px, 100%), 1fr)); gap: 0; border-top: 1px solid #DCE3E8; border-left: 1px solid #DCE3E8;">
+          <sc-for list="{{families}}" as="f" hint-placeholder-count="12">
+            <button type="button" onClick="{{f.open}}" style="border: 0; border-right: 1px solid #DCE3E8; border-bottom: 1px solid #DCE3E8; background: #FFFFFF; padding: 18px 20px; display: flex; align-items: center; gap: 12px; text-align: left; font-size: 17px; font-weight: 600; color: #10202C; min-height: 64px;">
+              <span style="width: 6px; height: 28px; border-radius: 2px; background: {{f.color}}; flex: none;"></span>{{f.name}}
+            </button>
+          </sc-for>
+        </div>
+      </section>
+
+      <section style="background: #0A5885; color: #FFFFFF;">
+        <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 16px 32px;">
+          <div style="display: flex; flex-direction: column; gap: 2px;"><strong style="font-family: 'Barlow Condensed', sans-serif; font-size: 28px; text-transform: uppercase;">Lumezzane</strong><span style="font-size: 15px; color: #CFE2EE;">progettati e prodotti in casa</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px;"><strong style="font-family: 'Barlow Condensed', sans-serif; font-size: 28px; text-transform: uppercase;">ISO 9001</strong><span style="font-size: 15px; color: #CFE2EE;">qualità certificata</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px;"><strong style="font-family: 'Barlow Condensed', sans-serif; font-size: 28px; text-transform: uppercase;">IMQ</strong><span style="font-size: 15px; color: #CFE2EE;">regolatori omologati EN 16129</span></div>
+          <div style="display: flex; flex-direction: column; gap: 2px;"><strong style="font-family: 'Barlow Condensed', sans-serif; font-size: 28px; text-transform: uppercase;">6 lingue</strong><span style="font-size: 15px; color: #CFE2EE;">catalogo per i mercati esteri</span></div>
+        </div>
+      </section>
+
+      <section style="max-width: 1240px; margin: 0 auto; padding: 40px 24px 56px; display: flex; flex-wrap: wrap; gap: 16px;">
+        <div style="flex: 1 1 320px; border: 1px solid #DCE3E8; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><strong style="font-size: 18px;">Catalogo generale</strong><span style="font-size: 15px; color: #4B5B67;">PDF · [dimensione] · 6 lingue</span><button type="button" style="align-self: flex-start; border: 1px solid #0A5885; background: #FFFFFF; color: #0A5885; border-radius: 4px; padding: 10px 14px; font-weight: 700; font-size: 14px;">Scarica</button></div>
+        <div style="flex: 1 1 320px; border: 1px solid #DCE3E8; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 8px;"><strong style="font-size: 18px;">Certificati e omologazioni</strong><span style="font-size: 15px; color: #4B5B67;">ISO 9001, IMQ, dichiarazioni di conformità</span><button type="button" style="align-self: flex-start; border: 1px solid #0A5885; background: #FFFFFF; color: #0A5885; border-radius: 4px; padding: 10px 14px; font-weight: 700; font-size: 14px;">Vedi tutti</button></div>
+        <div style="flex: 1 1 320px; border: 1px solid #DCE3E8; border-radius: 8px; padding: 22px; display: flex; flex-direction: column; gap: 8px; background: #FBEBD4;"><strong style="font-size: 18px;">Serve un prodotto su misura?</strong><span style="font-size: 15px; color: #4A2A05;">Tarature e attacchi speciali per i vostri impianti.</span><button type="button" onClick="{{goReq}}" style="align-self: flex-start; border: 0; background: #10202C; color: #FFFFFF; border-radius: 4px; padding: 10px 14px; font-weight: 700; font-size: 14px;">Scriveteci</button></div>
+      </section>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isCat}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 56px; display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start;">
+      <aside style="flex: 1 1 240px; max-width: 290px; display: flex; flex-direction: column; gap: 4px;">
+        <strong style="font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #4B5B67; padding-bottom: 6px;">Famiglie</strong>
+        <sc-for list="{{families}}" as="f" hint-placeholder-count="12">
+          <button type="button" onClick="{{f.open}}" style="border: 0; background: {{f.bg}}; color: #10202C; padding: 9px 10px; border-radius: 4px; display: flex; align-items: center; gap: 10px; text-align: left; font-size: 15px; font-weight: {{f.weight}};"><span style="width: 4px; height: 18px; border-radius: 2px; background: {{f.color}}; flex: none;"></span>{{f.name}}</button>
+        </sc-for>
+      </aside>
+      <div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+        <nav aria-label="Percorso" style="font-size: 14px; color: #4B5B67; display: flex; gap: 8px;"><button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 0; color: #0A5885; font-size: 14px;">Home</button><span>›</span><span>Prodotti</span><span>›</span><span>{{famName}}</span></nav>
+        <h1 style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-size: 48px; line-height: 1; text-transform: uppercase;">{{famName}}</h1>
+        <div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; font-size: 14px;">
+          <strong>Gas:</strong>
+          <span style="border: 1px solid #0A5885; background: #0A5885; color: #FFFFFF; border-radius: 4px; padding: 8px 12px; font-weight: 600;">GPL</span>
+          <span style="border: 1px solid #CBD5DC; border-radius: 4px; padding: 8px 12px; font-weight: 600;">Metano</span>
+          <span style="border: 1px solid #CBD5DC; border-radius: 4px; padding: 8px 12px; font-weight: 600;">Acqua</span>
+          <strong style="margin-left: 10px;">Omologazione:</strong>
+          <span style="border: 1px solid #CBD5DC; border-radius: 4px; padding: 8px 12px; font-weight: 600;">IMQ EN 16129</span>
+        </div>
+        <div style="overflow-x: auto; border: 1px solid #DCE3E8; border-radius: 8px;">
+          <table style="width: 100%; border-collapse: collapse; font-size: 15px; min-width: 640px;">
+            <thead>
+              <tr style="background: #F3F6F8; text-align: left;">
+                <th style="padding: 12px 14px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #4B5B67;"></th>
+                <th style="padding: 12px 14px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #4B5B67;">Codice</th>
+                <th style="padding: 12px 14px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #4B5B67;">Prodotto</th>
+                <th style="padding: 12px 14px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #4B5B67;">Uso</th>
+                <th style="padding: 12px 14px;"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <sc-for list="{{products}}" as="p" hint-placeholder-count="5">
+                <tr style="border-top: 1px solid #DCE3E8;">
+                  <td style="padding: 10px 14px; width: 72px;"><img src="{{p.img}}" alt="" style="width: 60px; height: 60px; object-fit: contain;" /></td>
+                  <td style="padding: 10px 14px;"><button type="button" onClick="{{p.open}}" style="border: 0; background: transparent; padding: 0; font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700; color: #0A5885;">{{p.code}}</button></td>
+                  <td style="padding: 10px 14px;"><strong>{{p.name}}</strong><br /><span style="color: #4B5B67;">{{p.fam}}</span></td>
+                  <td style="padding: 10px 14px; color: #33434F;">{{p.gas}}</td>
+                  <td style="padding: 10px 14px; text-align: right; white-space: nowrap;"><button type="button" onClick="{{p.open}}" style="border: 1px solid #0A5885; background: #FFFFFF; color: #0A5885; border-radius: 4px; padding: 9px 12px; font-weight: 700; font-size: 14px;">Scheda</button></td>
+                </tr>
+              </sc-for>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isPdp}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 56px; display: flex; flex-direction: column; gap: 24px;">
+      <nav aria-label="Percorso" style="font-size: 14px; color: #4B5B67; display: flex; flex-wrap: wrap; gap: 8px;"><button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 0; color: #0A5885; font-size: 14px;">Home</button><span>›</span><button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 0; color: #0A5885; font-size: 14px;">{{sel.fam}}</button><span>›</span><span>{{sel.code}}</span></nav>
+      <div style="display: flex; flex-wrap: wrap; gap: 36px; align-items: flex-start;">
+        <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+          <div style="border: 1px solid #DCE3E8; border-radius: 8px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center; background: #FFFFFF;"><img src="{{sel.img}}" alt="{{sel.name}} {{sel.code}}" style="width: 76%; height: 80%; object-fit: contain;" /></div>
+          <div style="display: flex; flex-wrap: wrap; gap: 8px;">
+            <button type="button" style="flex: 1 1 180px; border: 1px solid #CBD5DC; background: #FFFFFF; color: #10202C; border-radius: 4px; padding: 12px; font-weight: 700; font-size: 14px; text-align: left;">Scheda tecnica · PDF</button>
+            <button type="button" style="flex: 1 1 180px; border: 1px solid #CBD5DC; background: #FFFFFF; color: #10202C; border-radius: 4px; padding: 12px; font-weight: 700; font-size: 14px; text-align: left;">Dichiarazione di conformità</button>
+          </div>
+        </div>
+        <div style="flex: 1 1 480px; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+          <span style="font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #4B5B67;">{{sel.fam}}</span>
+          <h1 style="margin: 0; display: flex; flex-direction: column; gap: 4px;"><span style="font-family: 'Barlow Condensed', sans-serif; font-size: 64px; line-height: 0.95; color: #0A5885;">{{sel.code}}</span><span style="font-size: 26px; font-weight: 600; color: #10202C;">{{sel.name}}</span></h1>
+          <p style="margin: 0; font-size: 18px; line-height: 1.5; color: #33434F;">{{sel.desc}}</p>
+          <span style="align-self: flex-start; border: 2px solid #10202C; border-radius: 4px; padding: 6px 10px; font-weight: 700; font-size: 14px;">{{sel.cert}}</span>
+          <div style="overflow-x: auto; border: 1px solid #DCE3E8; border-radius: 8px;">
+            <table style="width: 100%; border-collapse: collapse; font-size: 16px; min-width: 460px;">
+              <thead><tr style="background: #F3F6F8; text-align: left;"><th style="padding: 10px 14px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #4B5B67;">Variante</th><th style="padding: 10px 14px; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: #4B5B67;">Taratura</th><th style="padding: 10px 14px;"></th></tr></thead>
+              <tbody>
+                <sc-for list="{{sel.variants}}" as="v" hint-placeholder-count="2">
+                  <tr style="border-top: 1px solid #DCE3E8;"><td style="padding: 12px 14px; font-family: 'Barlow Condensed', sans-serif; font-size: 22px; font-weight: 700;">{{v.code}}</td><td style="padding: 12px 14px;">{{v.spec}}</td><td style="padding: 12px 14px; text-align: right;"><button type="button" onClick="{{v.add}}" style="border: 0; background: #E08A1E; color: #10202C; border-radius: 4px; padding: 10px 14px; font-weight: 700; font-size: 14px;">+ Aggiungi alla richiesta</button></td></tr>
+                </sc-for>
+              </tbody>
+            </table>
+          </div>
+          <span style="font-size: 15px; color: #4B5B67;">Imballo e quantità minime: [dal catalogo]. Prezzi riservati ai rivenditori: li inviamo con l'offerta.</span>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isReq}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 56px; display: flex; flex-direction: column; gap: 22px;">
+      <h1 style="margin: 0; font-family: 'Barlow Condensed', sans-serif; font-size: 52px; line-height: 1; text-transform: uppercase;">Richiesta d'offerta</h1>
+      <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
+        <div style="border: 2px solid #0A5885; border-radius: 8px; padding: 28px; display: flex; flex-direction: column; gap: 8px; background: #F1F6F9;">
+          <strong style="font-size: 22px;">Richiesta inviata. Grazie!</strong>
+          <span style="font-size: 17px; color: #33434F;">L'ufficio commerciale vi risponde entro [x] ore lavorative. Una copia della richiesta arriva anche alla vostra email.</span>
+          <button type="button" onClick="{{goHome}}" style="align-self: flex-start; border: 0; background: #0A5885; color: #FFFFFF; border-radius: 4px; padding: 12px 18px; font-weight: 700; font-size: 15px; margin-top: 8px;">Torna alla home</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{notSent}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start;">
+          <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <strong style="font-size: 14px; letter-spacing: 0.1em; text-transform: uppercase; color: #4B5B67;">Codici richiesti</strong>
+            <sc-if value="{{reqEmpty}}" hint-placeholder-val="{{ false }}">
+              <div style="border: 1px dashed #9DB8CA; border-radius: 8px; padding: 18px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between;"><span>Nessun codice ancora.</span><button type="button" onClick="{{addDemo}}" style="border: 0; background: #E08A1E; color: #10202C; border-radius: 4px; padding: 10px 14px; font-weight: 700; font-size: 14px;">Aggiungi LP350T03 di prova</button></div>
+            </sc-if>
+            <sc-for list="{{reqItems}}" as="r" hint-placeholder-count="1">
+              <div style="border: 1px solid #DCE3E8; border-radius: 8px; padding: 12px 14px; display: flex; align-items: center; gap: 14px;">
+                <span style="font-family: 'Barlow Condensed', sans-serif; font-size: 24px; font-weight: 700; color: #0A5885; min-width: 110px;">{{r.code}}</span>
+                <span style="flex: 1; min-width: 0; font-size: 15px; color: #33434F;">{{r.spec}}</span>
+                <button type="button" onClick="{{r.dec}}" aria-label="Diminuisci quantità" style="width: 36px; height: 36px; border: 1px solid #CBD5DC; background: #FFFFFF; border-radius: 4px; font-size: 18px; color: #10202C;">−</button>
+                <span style="min-width: 54px; text-align: center; font-weight: 700;">{{r.q}} pz</span>
+                <button type="button" onClick="{{r.inc}}" aria-label="Aumenta quantità" style="width: 36px; height: 36px; border: 1px solid #CBD5DC; background: #FFFFFF; border-radius: 4px; font-size: 18px; color: #10202C;">+</button>
+              </div>
+            </sc-for>
+          </div>
+          <form style="flex: 1 1 420px; min-width: 0; border: 1px solid #DCE3E8; border-radius: 8px; padding: 22px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(200px, 100%), 1fr)); gap: 14px;">
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700;">Azienda<input type="text" placeholder="Ragione sociale" style="height: 44px; border: 1px solid #CBD5DC; border-radius: 4px; padding: 0 12px; font: inherit; font-size: 16px;" /></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700;">Paese<input type="text" placeholder="Italia" style="height: 44px; border: 1px solid #CBD5DC; border-radius: 4px; padding: 0 12px; font: inherit; font-size: 16px;" /></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700;">Email<input type="email" placeholder="nome@azienda.it" style="height: 44px; border: 1px solid #CBD5DC; border-radius: 4px; padding: 0 12px; font: inherit; font-size: 16px;" /></label>
+            <label style="display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700;">Telefono<input type="tel" placeholder="+39" style="height: 44px; border: 1px solid #CBD5DC; border-radius: 4px; padding: 0 12px; font: inherit; font-size: 16px;" /></label>
+            <label style="grid-column: 1 / -1; display: flex; flex-direction: column; gap: 6px; font-size: 14px; font-weight: 700;">Note<textarea rows="3" placeholder="Tarature speciali, tempi di consegna, destinazione…" style="border: 1px solid #CBD5DC; border-radius: 4px; padding: 10px 12px; font: inherit; font-size: 16px;"></textarea></label>
+            <button type="button" onClick="{{sendReq}}" style="grid-column: 1 / -1; border: 0; background: #0A5885; color: #FFFFFF; border-radius: 4px; padding: 16px; font-weight: 700; font-size: 17px;">Invia la richiesta</button>
+          </form>
+        </div>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <footer style="background: #10202C; color: #B9C6CF;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 26px 24px; display: flex; flex-wrap: wrap; gap: 12px 40px; justify-content: space-between; font-size: 14px;">
+      <span><strong style="color: #FFFFFF;">Gnali Bocia srl</strong> · Lumezzane (BS)</span>
+      <span>Prodotti · Download · Certificazioni · Contatti</span>
+    </div>
+  </footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2000}}'>
+const PRODUCTS = [
+  { id: 'lp350', code: 'LP350', name: 'Regolatore BP 1 kg/h', fam: 'Regolatori di bassa pressione', gas: 'GPL', img: '../img/i199bc73e.jpg', desc: 'Regolatore di bassa pressione con attacco orizzontale a taratura fissa, omologato IMQ EN 16129.', cert: 'IMQ · EN 16129', variants: [{ code: 'LP350T03', spec: '29 mbar · Butano' }, { code: 'LP350T08', spec: '50 mbar · Butano' }] },
+  { id: 'oc52', code: 'OC52', name: 'Riduttore di pressione', fam: 'Riduttori di alta pressione', gas: 'GPL', img: '../img/iff1483f3.jpg', desc: '[Descrizione dal catalogo Gnali Bocia]', cert: '[Omologazione]', variants: [{ code: 'OC52 [var.]', spec: '[Taratura]' }] },
+  { id: 'mc2400', code: 'MC2400', name: 'Minicentralina', fam: 'Minicentraline e centraline', gas: 'GPL', img: '../img/i8a61c636.jpg', desc: '[Descrizione dal catalogo Gnali Bocia]', cert: '[Omologazione]', variants: [{ code: 'MC2400 [var.]', spec: '[Taratura]' }] },
+  { id: 'fg100', code: 'FG100', name: 'Riduttore per acqua', fam: 'Prodotti per acqua e fluidi', gas: 'Acqua', img: '../img/ieda05ea9.jpg', desc: '[Descrizione dal catalogo Gnali Bocia]', cert: '[Certificazione]', variants: [{ code: 'FG100 [var.]', spec: '[Pressione]' }] },
+  { id: 'rub', code: '[CODICE]', name: 'Rubinetto in ottone', fam: 'Rubinetti', gas: 'GPL', img: '../img/ib495d390.jpg', desc: '[Descrizione dal catalogo Gnali Bocia]', cert: '[Certificazione]', variants: [{ code: '[CODICE]', spec: '[Attacchi]' }] }
+];
+const FAMILIES = [
+  ['Regolatori di bassa pressione', '#E08A1E'], ['Riduttori di alta pressione', '#B5462E'], ['Regolatori bilanciati', '#7A4FA0'], ['Minicentraline e centraline', '#2E7D4F'],
+  ['Tubi flessibili', '#7E8B94'], ['Raccordi', '#A0522D'], ['Rubinetti', '#C9A227'], ['Mensole per contatori gas', '#5B6E7A'],
+  ['Stabilizzatori di pressione', '#6B8E23'], ['Valvole di sicurezza', '#4A90B8'], ['Valvole di intercettazione', '#8C6A4F'], ['Accessori', '#A05C8C'],
+  ['Prodotti per acqua e fluidi', '#0A5885'], ['Prodotti medicali', '#3A3A3A']
+];
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const screen = s.screen || 'home';
+    const req = s.req || [];
+    const fam = s.fam || 'Regolatori di bassa pressione';
+    const top = () => { try { window.scrollTo(0, 0); } catch (e) {} };
+    const go = (sc, extra) => () => { this.setState(Object.assign({ screen: sc, toast: null }, extra || {})); top(); };
+    const addCode = (code, spec) => () => {
+      const r = (this.state && this.state.req) || [];
+      const f = r.find((x) => x.code === code);
+      this.setState({ req: f ? r.map((x) => (x.code === code ? Object.assign({}, x, { q: x.q + 50 }) : x)) : r.concat([{ code: code, spec: spec, q: 100 }]), toast: code, sent: false });
+    };
+    const setQ = (code, d) => () => {
+      const r = (this.state && this.state.req) || [];
+      this.setState({ req: r.map((x) => (x.code === code ? Object.assign({}, x, { q: x.q + d }) : x)).filter((x) => x.q > 0) });
+    };
+    const products = PRODUCTS.map((p) => Object.assign({}, p, { open: go('pdp', { sel: p.id }), variants: p.variants.map((v) => Object.assign({}, v, { add: addCode(v.code, p.name + ' · ' + v.spec) })) }));
+    const sel = products.find((p) => p.id === (s.sel || 'lp350'));
+    return {
+      isHome: screen === 'home', isCat: screen === 'cat', isPdp: screen === 'pdp', isReq: screen === 'req',
+      goHome: go('home', { sent: false }), goCat: go('cat'), goReq: go('req'), goPdpDefault: go('pdp', { sel: 'lp350' }),
+      products: products, sel: sel,
+      families: FAMILIES.map((f) => ({ name: f[0], color: f[1], bg: f[0] === fam ? '#E7F0F6' : 'transparent', weight: f[0] === fam ? '700' : '500', open: go('cat', { fam: f[0] }) })),
+      famName: fam,
+      reqItems: req.map((r) => Object.assign({}, r, { inc: setQ(r.code, 50), dec: setQ(r.code, -50) })), reqCount: req.length, reqEmpty: req.length === 0,
+      addDemo: addCode('LP350T03', 'Regolatore BP 1 kg/h · 29 mbar · Butano'),
+      sendReq: () => { this.setState({ sent: true, req: [] }); top(); }, sent: !!s.sent, notSent: !s.sent,
+      toastOn: !!s.toast, toastCode: s.toast || ''
+    };
+  }
+}
+</script>
+</body></html>

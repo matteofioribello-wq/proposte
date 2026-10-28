@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Demo B · Guida per età</title>
+<style>body{margin:0}</style><script src="../dcmini.js"></script></head>
+<body><script type="text/x-dc-tpl">
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Young+Serif&amp;family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,800&amp;display=swap" />
+<style>
+body{margin:0;background:#F6F8FC}
+a{color:#1E5FB3}a:hover{color:#143F78}
+button{font-family:inherit;cursor:pointer}
+</style>
+</helmet>
+<div style="min-height: 100vh; background: #F6F8FC; color: #18233A; font-family: 'Nunito Sans', system-ui, sans-serif;">
+
+  <div style="background: #E3ECF8; color: #18233A; padding: 10px 24px; display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: center; justify-content: center; font-size: 13px;">
+    <strong style="letter-spacing: 0.08em; text-transform: uppercase; color: #1E5FB3;">Demo di direzione</strong>
+    <span>Non è il sito finale: serve a darvi un'idea. La demo completa la costruiamo dopo la firma del preventivo.</span>
+    <div style="display: flex; gap: 6px; flex-wrap: wrap;">
+      <button type="button" onClick="{{goHome}}" style="border: 1px solid #A9BEDB; background: #FFFFFF; color: #18233A; border-radius: 999px; padding: 4px 10px; font-size: 12px;">Home</button>
+      <button type="button" onClick="{{goCat}}" style="border: 1px solid #A9BEDB; background: #FFFFFF; color: #18233A; border-radius: 999px; padding: 4px 10px; font-size: 12px;">Categoria</button>
+      <button type="button" onClick="{{goPdpDefault}}" style="border: 1px solid #A9BEDB; background: #FFFFFF; color: #18233A; border-radius: 999px; padding: 4px 10px; font-size: 12px;">Scheda</button>
+      <button type="button" onClick="{{goCart}}" style="border: 1px solid #A9BEDB; background: #FFFFFF; color: #18233A; border-radius: 999px; padding: 4px 10px; font-size: 12px;">Carrello</button>
+    </div>
+  </div>
+
+  <header style="background: #FFFFFF;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 16px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 24px;">
+      <nav aria-label="Menu principale" style="display: flex; flex-wrap: wrap; gap: 4px 22px; font-size: 16px; font-weight: 700; flex: 1 1 320px;">
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 8px 0; color: #18233A; font-size: 16px; font-weight: 700;">Per età</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 8px 0; color: #18233A; font-size: 16px; font-weight: 700;">Per stanza</button>
+        <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 8px 0; color: #18233A; font-size: 16px; font-weight: 700;">Marchi</button>
+        <button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 8px 0; color: #18233A; font-size: 16px; font-weight: 700;">Guide</button>
+      </nav>
+      <button type="button" onClick="{{goHome}}" aria-label="Torna alla home" style="border: 0; background: transparent; padding: 0; flex: 0 0 auto;"><img src="../img/logo-igo.png" alt="I.GO shopping" style="height: 46px; width: auto; display: block;" /></button>
+      <div style="display: flex; align-items: center; justify-content: flex-end; gap: 6px; flex: 1 1 320px;">
+        <button type="button" aria-label="Cerca" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #F0F4FA; display: flex; align-items: center; justify-content: center;"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#18233A" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.5" y2="16.5"></line></svg></button>
+        <button type="button" aria-label="Scrivici su WhatsApp" style="height: 44px; border-radius: 999px; border: 0; background: #F0F4FA; color: #18233A; padding: 0 14px; font-weight: 700; font-size: 14px;">Chiedi a noi</button>
+        <button type="button" onClick="{{goCart}}" aria-label="Carrello" style="height: 44px; border-radius: 999px; border: 0; background: #1E5FB3; color: #FFFFFF; padding: 0 16px; font-weight: 800; font-size: 15px; display: flex; align-items: center; gap: 8px;">
+          <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 7h14l-1.5 12h-11z"></path><path d="M9 7a3 3 0 0 1 6 0"></path></svg>{{cartCount}}
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <sc-if value="{{toastOn}}" hint-placeholder-val="{{ false }}">
+    <div style="background: #FCE7D6; color: #5A2E0C;">
+      <div style="max-width: 1240px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; justify-content: space-between; font-size: 15px;">
+        <span><strong>Nel carrello:</strong> {{toastName}}</span>
+        <button type="button" onClick="{{goCart}}" style="border: 0; background: #18233A; color: #FFFFFF; border-radius: 999px; padding: 10px 18px; font-weight: 700; font-size: 14px;">Vai al carrello</button>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{isHome}}" hint-placeholder-val="{{ true }}">
+    <main>
+      <section style="max-width: 1240px; margin: 0 auto; padding: 56px 24px 24px; display: flex; flex-direction: column; align-items: center; gap: 20px; text-align: center;">
+        <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #1E5FB3;">Dalla gravidanza ai primi passi</span>
+        <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: clamp(40px, 5.4vw, 68px); line-height: 1.04; max-width: 900px; text-wrap: balance;">Ogni età ha le sue cose giuste. Vi aiutiamo a sceglierle.</h1>
+        <p style="margin: 0; font-size: 19px; line-height: 1.5; color: #3B4863; max-width: 640px;">Ditemi quanti mesi ha il vostro bambino: vi mostriamo solo quello che serve davvero adesso, con il consiglio di chi questi prodotti li distribuisce da anni.</p>
+      </section>
+
+      <section style="max-width: 1240px; margin: 0 auto; padding: 8px 24px 32px; display: flex; flex-direction: column; gap: 24px;">
+        <div role="group" aria-label="Scegli l'età" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;">
+          <sc-for list="{{ages}}" as="a" hint-placeholder-count="5">
+            <button type="button" onClick="{{a.pick}}" style="border: 2px solid {{a.border}}; background: {{a.bg}}; color: {{a.fg}}; border-radius: 999px; padding: 14px 22px; font-weight: 800; font-size: 16px; min-height: 52px;">{{a.label}}</button>
+          </sc-for>
+        </div>
+        <div style="background: #FFFFFF; border-radius: 36px; padding: 32px; display: flex; flex-direction: column; gap: 22px; box-shadow: 0 20px 50px -30px rgba(24, 35, 58, 0.35);">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 12px;">
+            <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 32px;">Per {{ageLabel}}: le cose che servono</h2>
+            <button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; color: #1E5FB3; font-weight: 800; font-size: 16px; padding: 10px 0;">Vedi la selezione completa →</button>
+          </div>
+          <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #3B4863; max-width: 760px;">{{ageTip}}</p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(220px, 100%), 1fr)); gap: 18px;">
+            <sc-for list="{{agePicksHome}}" as="p" hint-placeholder-count="4">
+              <div style="display: flex; flex-direction: column; gap: 10px; background: #F6F8FC; border-radius: 24px; padding: 16px;">
+                <button type="button" onClick="{{p.open}}" aria-label="Apri {{p.name}}" style="border: 0; padding: 0; background: #FFFFFF; border-radius: 18px; aspect-ratio: 4 / 3; display: flex; align-items: center; justify-content: center;"><img src="{{p.img}}" alt="{{p.name}}" style="width: 70%; height: 80%; object-fit: contain;" /></button>
+                <span style="font-size: 13px; font-weight: 800; color: #1E5FB3;">{{p.brand}}</span>
+                <button type="button" onClick="{{p.open}}" style="border: 0; background: transparent; padding: 0; text-align: left; font-size: 17px; font-weight: 700; color: #18233A;">{{p.name}}</button>
+                <span style="font-size: 14px; line-height: 1.4; color: #3B4863;">{{p.why}}</span>
+                <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: auto;">
+                  <strong style="font-size: 18px;">{{p.priceS}}</strong>
+                  <button type="button" onClick="{{p.add}}" style="border: 0; background: #18233A; color: #FFFFFF; border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 14px;">Aggiungi</button>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <section style="max-width: 1240px; margin: 0 auto; padding: 24px 24px 48px; display: flex; flex-direction: column; gap: 22px;">
+        <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px;">Le nostre guide</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: 20px;">
+          <article style="background: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../img/p-doona-x.jpg" alt="" style="width: 100%; height: 200px; object-fit: contain; background: #E3ECF8;" />
+            <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 13px; font-weight: 800; color: #B4561B; text-transform: uppercase; letter-spacing: 0.1em;">Sicurezza in auto</span><strong style="font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.2;">Come scegliere il primo seggiolino: i-Size spiegato semplice</strong><span style="font-size: 15px; color: #3B4863;">5 minuti di lettura</span></div>
+          </article>
+          <article style="background: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../img/ph-aspasso.opt.jpg" alt="" style="width: 100%; height: 200px; object-fit: cover;" />
+            <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 13px; font-weight: 800; color: #B4561B; text-transform: uppercase; letter-spacing: 0.1em;">A spasso</span><strong style="font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.2;">Passeggino leggero o modulare? Dipende da come vivete</strong><span style="font-size: 15px; color: #3B4863;">4 minuti di lettura</span></div>
+          </article>
+          <article style="background: #FFFFFF; border-radius: 28px; overflow: hidden; display: flex; flex-direction: column;">
+            <img src="../img/ph-incasa.opt.jpg" alt="" style="width: 100%; height: 200px; object-fit: cover;" />
+            <div style="padding: 22px; display: flex; flex-direction: column; gap: 8px;"><span style="font-size: 13px; font-weight: 800; color: #B4561B; text-transform: uppercase; letter-spacing: 0.1em;">In attesa</span><strong style="font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 22px; line-height: 1.2;">La lista nascita essenziale, senza doppioni</strong><span style="font-size: 15px; color: #3B4863;">6 minuti di lettura</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section style="background: #18233A; color: #FFFFFF;">
+        <div style="max-width: 1240px; margin: 0 auto; padding: 48px 24px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 24px;">
+          <div style="flex: 1 1 520px; min-width: 0; display: flex; flex-direction: column; gap: 10px;">
+            <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 34px; line-height: 1.15;">Un dubbio? Rispondiamo noi, da Trento.</h2>
+            <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #C9D3E6;">Siamo il distributore: conosciamo ogni prodotto, ogni ricambio e ogni aggancio. Scriveteci prima di comprare.</p>
+          </div>
+          <div style="display: flex; flex-wrap: wrap; gap: 10px;">
+            <button type="button" style="border: 0; background: #F4B183; color: #18233A; border-radius: 999px; padding: 16px 24px; font-weight: 800; font-size: 16px;">Scrivici su WhatsApp</button>
+            <button type="button" style="border: 1.5px solid #FFFFFF; background: transparent; color: #FFFFFF; border-radius: 999px; padding: 16px 24px; font-weight: 800; font-size: 16px;">Prenota una chiamata</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isCat}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 56px; display: flex; flex-direction: column; gap: 24px;">
+      <nav aria-label="Percorso" style="font-size: 14px; color: #3B4863; display: flex; gap: 8px;"><button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 0; color: #1E5FB3; font-size: 14px;">Home</button><span>/</span><span>Per età</span><span>/</span><span>{{ageLabel}}</span></nav>
+      <div style="background: #FFFFFF; border-radius: 36px; padding: 36px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center;">
+        <div style="flex: 1 1 460px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 14px; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: #1E5FB3;">Selezione per età</span>
+          <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 52px; line-height: 1.05;">{{ageLabel}}</h1>
+          <p style="margin: 0; font-size: 17px; line-height: 1.5; color: #3B4863;">{{ageTip}}</p>
+        </div>
+        <div role="group" aria-label="Cambia età" style="flex: 1 1 300px; display: flex; flex-wrap: wrap; gap: 8px;">
+          <sc-for list="{{ages}}" as="a" hint-placeholder-count="5">
+            <button type="button" onClick="{{a.pick}}" style="border: 2px solid {{a.border}}; background: {{a.bg}}; color: {{a.fg}}; border-radius: 999px; padding: 10px 16px; font-weight: 800; font-size: 14px; min-height: 44px;">{{a.label}}</button>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 14px;">
+        <sc-for list="{{agePicks}}" as="p" hint-placeholder-count="4">
+          <div style="background: #FFFFFF; border-radius: 28px; padding: 18px; display: flex; flex-wrap: wrap; gap: 20px; align-items: center;">
+            <button type="button" onClick="{{p.open}}" aria-label="Apri {{p.name}}" style="border: 0; padding: 0; background: #F0F4FA; border-radius: 20px; width: 150px; height: 150px; flex: none; display: flex; align-items: center; justify-content: center;"><img src="{{p.img}}" alt="{{p.name}}" style="width: 80%; height: 80%; object-fit: contain; mix-blend-mode: multiply;" /></button>
+            <div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+              <span style="font-size: 13px; font-weight: 800; color: #1E5FB3;">{{p.brand}} · {{p.sub}}</span>
+              <button type="button" onClick="{{p.open}}" style="border: 0; background: transparent; padding: 0; text-align: left; font-family: 'Young Serif', Georgia, serif; font-size: 24px; color: #18233A;">{{p.name}}</button>
+              <span style="font-size: 15px; line-height: 1.45; color: #3B4863;"><strong style="color: #B4561B;">Perché lo consigliamo:</strong> {{p.why}}</span>
+            </div>
+            <div style="flex: 0 1 220px; display: flex; flex-direction: column; align-items: flex-end; gap: 8px; margin-left: auto;">
+              <strong style="font-size: 24px;">{{p.priceS}}</strong>
+              <span style="font-size: 14px; color: #3B4863;">o 3 rate da {{p.rata}}</span>
+              <button type="button" onClick="{{p.add}}" style="border: 0; background: #18233A; color: #FFFFFF; border-radius: 999px; padding: 12px 20px; font-weight: 800; font-size: 15px;">Aggiungi</button>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isPdp}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 56px; display: flex; flex-direction: column; gap: 28px;">
+      <nav aria-label="Percorso" style="font-size: 14px; color: #3B4863; display: flex; flex-wrap: wrap; gap: 8px;"><button type="button" onClick="{{goHome}}" style="border: 0; background: transparent; padding: 0; color: #1E5FB3; font-size: 14px;">Home</button><span>/</span><button type="button" onClick="{{goCat}}" style="border: 0; background: transparent; padding: 0; color: #1E5FB3; font-size: 14px;">{{ageLabel}}</button><span>/</span><span>{{sel.name}}</span></nav>
+      <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: flex-start;">
+        <div style="flex: 1 1 460px; min-width: 0; background: #FFFFFF; border-radius: 40px; aspect-ratio: 1 / 1; display: flex; align-items: center; justify-content: center;">
+          <img src="{{sel.img}}" alt="{{sel.name}}" style="width: 76%; height: 76%; object-fit: contain;" />
+        </div>
+        <div style="flex: 1 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 18px;">
+          <span style="align-self: flex-start; background: #E3ECF8; color: #1E5FB3; border-radius: 999px; padding: 8px 14px; font-size: 14px; font-weight: 800;">Adatto a: {{sel.ageS}}</span>
+          <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 44px; line-height: 1.08;">{{sel.name}}</h1>
+          <span style="font-size: 15px; color: #3B4863;">{{sel.brand}} · ★★★★★ [recensioni dei clienti]</span>
+          <div style="display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap;"><strong style="font-size: 34px;">{{sel.priceS}}</strong><span style="font-size: 15px; color: #3B4863;">o 3 rate da <strong>{{sel.rata}}</strong></span></div>
+          <div style="background: #FCE7D6; border-radius: 24px; padding: 20px; display: flex; flex-direction: column; gap: 6px;">
+            <strong style="font-size: 15px; color: #5A2E0C;">Il consiglio di I.GO</strong>
+            <span style="font-size: 16px; line-height: 1.5; color: #3D2210;">{{sel.why}}</span>
+          </div>
+          <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 8px; font-size: 16px; line-height: 1.45;">
+            <sc-for list="{{sel.points}}" as="pt" hint-placeholder-count="3"><li>{{pt}}</li></sc-for>
+          </ul>
+          <button type="button" onClick="{{addSel}}" style="border: 0; background: #1E5FB3; color: #FFFFFF; border-radius: 999px; padding: 18px 24px; font-weight: 800; font-size: 17px;">Aggiungi al carrello</button>
+          <span style="font-size: 15px; color: #3B4863;">Non siete sicuri? <strong style="color: #18233A;">Chiedete a noi su WhatsApp</strong>: rispondiamo prima che compriate.</span>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <h2 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 28px;">Spesso scelti insieme</h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr)); gap: 16px;">
+          <sc-for list="{{together}}" as="p" hint-placeholder-count="3">
+            <div style="background: #FFFFFF; border-radius: 24px; padding: 14px; display: flex; gap: 14px; align-items: center;">
+              <img src="{{p.img}}" alt="" style="width: 84px; height: 84px; object-fit: contain; background: #F0F4FA; border-radius: 16px;" />
+              <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px;"><strong style="font-size: 15px;">{{p.name}}</strong><span style="font-size: 14px; color: #3B4863;">{{p.priceS}}</span></div>
+              <button type="button" onClick="{{p.add}}" aria-label="Aggiungi {{p.name}}" style="width: 44px; height: 44px; border-radius: 50%; border: 0; background: #18233A; color: #FFFFFF; font-size: 22px;">+</button>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </main>
+  </sc-if>
+
+  <sc-if value="{{isCart}}" hint-placeholder-val="{{ false }}">
+    <main style="max-width: 1240px; margin: 0 auto; padding: 32px 24px 56px; display: flex; flex-direction: column; gap: 24px;">
+      <h1 style="margin: 0; font-family: 'Young Serif', Georgia, serif; font-weight: 400; font-size: 48px;">Il vostro carrello</h1>
+      <sc-if value="{{cartEmpty}}" hint-placeholder-val="{{ false }}">
+        <div style="background: #FFFFFF; border-radius: 28px; padding: 32px; display: flex; flex-wrap: wrap; gap: 16px; align-items: center; justify-content: space-between;">
+          <span style="font-size: 18px;">Ancora vuoto. Aggiungete un prodotto per vedere come funziona.</span>
+          <button type="button" onClick="{{addDemo}}" style="border: 0; background: #1E5FB3; color: #FFFFFF; border-radius: 999px; padding: 14px 22px; font-weight: 800; font-size: 15px;">Aggiungi un Doona X di prova</button>
+        </div>
+      </sc-if>
+      <sc-if value="{{cartFull}}" hint-placeholder-val="{{ true }}">
+        <div style="display: flex; flex-wrap: wrap; gap: 28px; align-items: flex-start;">
+          <div style="flex: 999 1 560px; min-width: 0; display: flex; flex-direction: column; gap: 12px;">
+            <sc-for list="{{cartItems}}" as="c" hint-placeholder-count="1">
+              <div style="background: #FFFFFF; border-radius: 24px; padding: 16px; display: flex; gap: 18px; align-items: center;">
+                <img src="{{c.img}}" alt="" style="width: 100px; height: 100px; object-fit: contain; background: #F0F4FA; border-radius: 18px;" />
+                <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 6px;">
+                  <strong style="font-size: 17px;">{{c.name}}</strong>
+                  <span style="font-size: 14px; color: #3B4863;">{{c.brand}}</span>
+                  <div style="display: flex; align-items: center; gap: 10px;">
+                    <button type="button" onClick="{{c.dec}}" aria-label="Togli uno" style="width: 36px; height: 36px; border-radius: 50%; border: 0; background: #F0F4FA; font-size: 18px; color: #18233A;">−</button>
+                    <span style="font-weight: 800;">{{c.q}}</span>
+                    <button type="button" onClick="{{c.inc}}" aria-label="Aggiungi uno" style="width: 36px; height: 36px; border-radius: 50%; border: 0; background: #F0F4FA; font-size: 18px; color: #18233A;">+</button>
+                  </div>
+                </div>
+                <strong style="font-size: 20px; white-space: nowrap;">{{c.line}}</strong>
+              </div>
+            </sc-for>
+          </div>
+          <aside style="flex: 1 1 320px; min-width: 0; background: #FFFFFF; border-radius: 32px; padding: 28px; display: flex; flex-direction: column; gap: 14px;">
+            <div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Subtotale</span><strong>{{cartTotal}}</strong></div>
+            <div style="display: flex; justify-content: space-between; font-size: 16px;"><span>Spedizione</span><span style="color: #3B4863;">[calcolata al pagamento]</span></div>
+            <div style="border-top: 1px solid #DCE4F0; padding-top: 14px; display: flex; justify-content: space-between; align-items: baseline;"><strong style="font-size: 18px;">Totale</strong><strong style="font-size: 30px;">{{cartTotal}}</strong></div>
+            <span style="font-size: 15px; color: #3B4863;">o 3 rate da <strong>{{cartRata}}</strong> con Klarna o Scalapay</span>
+            <button type="button" style="border: 0; background: #1E5FB3; color: #FFFFFF; border-radius: 999px; padding: 18px 24px; font-weight: 800; font-size: 17px;">Procedi al pagamento</button>
+            <div style="background: #F0F4FA; border-radius: 18px; padding: 14px; font-size: 14px; line-height: 1.45; color: #3B4863;"><strong style="color: #18233A;">È un regalo?</strong> Aggiungete un biglietto e la lista nascita da condividere con parenti e amici.</div>
+          </aside>
+        </div>
+      </sc-if>
+    </main>
+  </sc-if>
+
+  <footer style="background: #FFFFFF; border-top: 1px solid #DCE4F0;">
+    <div style="max-width: 1240px; margin: 0 auto; padding: 28px 24px; display: flex; flex-wrap: wrap; gap: 12px 40px; justify-content: space-between; font-size: 14px; color: #3B4863;">
+      <span><strong style="color: #18233A;">I.GO Distribution</strong> · Trento</span>
+      <span>Guide · Assistenza · Ricambi · igobaby.it</span>
+    </div>
+  </footer>
+</div>
+</script>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1280,"height":2600}}'>
+const PRODUCTS = [
+  { id: 'doona', name: 'Seggiolino auto Doona X', brand: 'Doona', price: 649.9, img: '../img/p-doona-x.jpg', sub: 'Seggiolini auto', ages: ['attesa', '0-6', '6-12'], ageS: 'dalla nascita', why: 'Seggiolino e passeggino nello stesso oggetto: perfetto per i primi mesi, quando si entra e si esce spesso dall’auto.', points: ['Omologato i-Size (R129)', 'Per bambini da 40 a 83 cm', 'Si apre in passeggino in un gesto'] },
+  { id: 'thermy', name: 'Sacco passeggino Thermy Plus', brand: 'Igo Baby', price: 189.9, img: '../img/p-thermy-plus.jpg', sub: 'Sacchi passeggino', ages: ['0-6', '6-12'], ageS: 'primi mesi', why: 'Il nostro sacco invernale: si monta su quasi tutti i passeggini e vi fa uscire anche a gennaio.', points: ['Firmato I.GO Baby', '[Materiali e misure dal catalogo]'] },
+  { id: 'marsupio', name: 'Marsupio Harmony', brand: 'BabyBjörn', price: 245.0, img: '../img/p-marsupio-harmony.jpg', sub: 'Marsupi e zaini', ages: ['0-6', '6-12'], ageS: 'dalla nascita', why: 'Per le prime settimane a contatto e per le passeggiate dove il passeggino non arriva.', points: ['Ergonomico', '[Posizioni e peso dal catalogo]'] },
+  { id: 'prep', name: 'Perfect Prep Pro', brand: 'Tommee Tippee', price: 269.9, img: '../img/p-perfect-prep-pro.jpg', sub: 'Biberon', ages: ['attesa', '0-6'], ageS: 'dalla nascita', why: 'Le poppate notturne diventano più rapide: il biberon è pronto alla temperatura giusta.', points: ['[Tempi e capacità dal catalogo]'] },
+  { id: 'matty', name: 'Fasciatoio Matty', brand: 'Leander', price: 139.0, img: '../img/p-fasciatoio-matty.jpg', sub: 'Fasciatoi', ages: ['attesa', '0-6'], ageS: 'dalla nascita', why: 'Da mettere in lista nascita: morbido, lavabile, si appoggia sul mobile che avete già.', points: ['Design scandinavo', '[Misure dal catalogo]'] },
+  { id: 'moby', name: 'Luce notturna Balena Moby', brand: 'Flow Amsterdam', price: 72.0, img: '../img/p-luce-notturna.jpg', sub: 'Luci notturne', ages: ['attesa', '6-12', '1-3'], ageS: 'tutte le età', why: 'Una luce morbida per i risvegli e per rassicurare chi inizia a dormire da solo.', points: ['LED', '[Autonomia dal catalogo]'] },
+  { id: 'runner', name: 'Passeggino Runner 3', brand: 'Hauck', price: 379.9, img: '../img/p-runner-3.jpg', sub: 'Passeggini', ages: ['6-12', '1-3'], ageS: 'da seduto', why: 'Tre ruote per chi cammina tanto, anche fuori città.', points: ['Tre ruote', 'Seduta reclinabile', '[Specifiche dal catalogo]'] },
+  { id: 'liki', name: 'Liki Trike S1', brand: 'Doona', price: 229.0, img: '../img/p-liki-trike-s1.jpg', sub: 'Tricicli', ages: ['1-3', '3+'], ageS: '[età dal catalogo]', why: 'Il primo triciclo che si chiude e sta nel bagagliaio: si porta in vacanza.', points: ['Pieghevole in pochi secondi', '[Età dal catalogo]'] }
+];
+const AGES = [
+  { id: 'attesa', label: 'In attesa', tip: 'Le cose da preparare prima della nascita: viaggio in auto, cambio, notti. Il resto può aspettare.' },
+  { id: '0-6', label: '0–6 mesi', tip: 'I mesi del contatto e delle uscite brevi: seggiolino, marsupio e qualcosa di caldo per il passeggino.' },
+  { id: '6-12', label: '6–12 mesi', tip: 'Si sta seduti e si esce di più: è il momento del passeggino giusto per il vostro modo di vivere.' },
+  { id: '1-3', label: '1–3 anni', tip: 'Primi passi e prime corse: tricicli, viaggi e una buona luce per la nanna.' },
+  { id: '3+', label: '3 anni e più', tip: 'Autonomia: giochi da portare ovunque e accessori che durano.' }
+];
+function eur(n) { return n.toLocaleString('it-IT', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €'; }
+class Component extends DCLogic {
+  renderVals() {
+    const s = this.state || {};
+    const screen = s.screen || 'home';
+    const age = s.age || '0-6';
+    const cart = s.cart || [];
+    const top = () => { try { window.scrollTo(0, 0); } catch (e) {} };
+    const go = (sc, extra) => () => { this.setState(Object.assign({ screen: sc, toast: null }, extra || {})); top(); };
+    const add = (id) => () => {
+      const c = (this.state && this.state.cart) || [];
+      const f = c.find((x) => x.id === id);
+      const n = f ? c.map((x) => (x.id === id ? { id: x.id, q: x.q + 1 } : x)) : c.concat([{ id: id, q: 1 }]);
+      this.setState({ cart: n, toast: id });
+    };
+    const setQ = (id, d) => () => {
+      const c = (this.state && this.state.cart) || [];
+      this.setState({ cart: c.map((x) => (x.id === id ? { id: x.id, q: x.q + d } : x)).filter((x) => x.q > 0) });
+    };
+    const all = PRODUCTS.map((p) => Object.assign({}, p, { priceS: eur(p.price), rata: eur(p.price / 3), open: go('pdp', { sel: p.id }), add: add(p.id) }));
+    const ageObj = AGES.find((a) => a.id === age);
+    const sel = all.find((p) => p.id === (s.sel || 'doona'));
+    const items = cart.map((ci) => { const p = all.find((x) => x.id === ci.id); return Object.assign({}, p, { q: ci.q, line: eur(p.price * ci.q), inc: setQ(ci.id, 1), dec: setQ(ci.id, -1) }); });
+    const total = items.reduce((t, i) => t + i.price * i.q, 0);
+    const toastP = s.toast ? all.find((p) => p.id === s.toast) : null;
+    return {
+      isHome: screen === 'home', isCat: screen === 'cat', isPdp: screen === 'pdp', isCart: screen === 'cart',
+      goHome: go('home'), goCat: go('cat'), goCart: go('cart'), goPdpDefault: go('pdp', { sel: 'doona' }),
+      ages: AGES.map((a) => ({ label: a.label, bg: a.id === age ? '#18233A' : '#FFFFFF', fg: a.id === age ? '#FFFFFF' : '#18233A', border: a.id === age ? '#18233A' : '#C9D3E6', pick: () => this.setState({ age: a.id }) })),
+      ageLabel: ageObj.label, ageTip: ageObj.tip,
+      agePicks: all.filter((p) => p.ages.indexOf(age) >= 0),
+      agePicksHome: all.filter((p) => p.ages.indexOf(age) >= 0).slice(0, 4),
+      sel: sel, addSel: add(sel.id),
+      together: all.filter((p) => p.id !== sel.id && p.ages.some((a) => sel.ages.indexOf(a) >= 0)).slice(0, 3),
+      cartItems: items, cartCount: items.reduce((t, i) => t + i.q, 0), cartTotal: eur(total), cartRata: eur(total / 3),
+      cartEmpty: items.length === 0, cartFull: items.length > 0, addDemo: add('doona'),
+      toastOn: !!toastP, toastName: toastP ? toastP.name : ''
+    };
+  }
+}
+</script>
+</body></html>
