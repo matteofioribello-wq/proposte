@@ -1,0 +1,19 @@
+<!-- @dsCard group="Proposta" height=520 width=1100 subtitle="Forchette prima del brief, prezzi fissi dopo" -->
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Investimento</title></head>
+<body style="margin:0">
+<div id="root" class="rr-root" style="padding: 24px;"></div>
+<script>
+  var R = window.RockRoll, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(R.Investimento, {
+    righe: [
+      { voce: 'Sito nuovo', descrizione: 'Struttura, grafica, testi, catalogo per linee, lingue.', prezzo: '[min]–[max] €', mercato: 'freelance 1.000–5.000 €' },
+      { voce: 'Manutenzione', descrizione: 'Canone mensile con ore incluse.', prezzo: '[canone] €/mese', mercato: '50–500 €/mese' },
+      { voce: 'Collegamento gestionale', descrizione: 'Prodotti e listini sincronizzati.', prezzo: 'da [min] €', mercato: 'da 2.000 €', extra: true }
+    ],
+    totale: { voce: 'Progetto', prezzo: '[min]–[max] €' }
+  }));
+</script>
+</body>
+</html>

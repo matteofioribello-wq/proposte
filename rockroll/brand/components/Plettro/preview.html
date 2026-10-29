@@ -1,0 +1,17 @@
+<!-- @dsCard group="Marchio" height=160 subtitle="Icona, avatar, firma" -->
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Plettro</title></head>
+<body>
+<div id="root" class="rr-root rr-demo"></div>
+<script>
+  var R = window.RockRoll, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(R.Plettro, { size: 96, label: 'Rock&Roll Studio' }),
+    h('div', { style: { background: 'var(--hero)', borderRadius: '24px', width: '120px', height: '120px', display: 'flex', alignItems: 'center', justifyContent: 'center' } }, h(R.Plettro, { size: 72, foro: 'var(--hero)' })),
+    h('div', { style: { background: 'var(--giallo)', borderRadius: '10px', padding: '16px' } }, h(R.Plettro, { size: 72, colore: 'ghisa' })),
+    h(R.Plettro, { size: 28, sigla: false, foro: 'var(--surface)' })
+  ));
+</script>
+</body>
+</html>

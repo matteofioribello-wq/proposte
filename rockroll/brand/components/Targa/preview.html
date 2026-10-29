@@ -1,0 +1,16 @@
+<!-- @dsCard group="Marchio" height=300 subtitle="Ghisa e ottone, tre taglie" -->
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Targa</title></head>
+<body>
+<div id="root" class="rr-root rr-demo" style="background: var(--surface-steel);"></div>
+<script>
+  var R = window.RockRoll, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(R.Targa, { size: 'm' }),
+    h(R.Targa, { size: 'm', variante: 'ottone' }),
+    h(R.Targa, { size: 's', dettagli: false })
+  ));
+</script>
+</body>
+</html>

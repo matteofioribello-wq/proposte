@@ -1,0 +1,17 @@
+<!-- @dsCard group="Audit" height=120 subtitle="I quattro giudizi del collaudo" -->
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Timbro</title></head>
+<body>
+<div id="root" class="rr-root rr-demo" style="gap: 40px;"></div>
+<script>
+  var R = window.RockRoll, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h(R.Timbro, { tipo: 'fuori-norma' }),
+    h(R.Timbro, { tipo: 'da-rifare' }),
+    h(R.Timbro, { tipo: 'da-tenere' }),
+    h(R.Timbro, { tipo: 'collaudato' })
+  ));
+</script>
+</body>
+</html>

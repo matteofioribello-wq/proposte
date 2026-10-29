@@ -1,0 +1,15 @@
+<!-- @dsCard group="Azioni" height=180 -->
+<!doctype html>
+<html lang="it">
+<head><meta charset="utf-8"><title>Bottone</title></head>
+<body>
+<div id="root" class="rr-root"></div>
+<script>
+  var R = window.RockRoll, h = React.createElement;
+  ReactDOM.createRoot(document.getElementById('root')).render(h(React.Fragment, null,
+    h('div', { className: 'rr-demo' }, h(R.Bottone, null, 'Compila il brief'), h(R.Bottone, { variante: 'secondario' }, 'Scarica il PDF')),
+    h('div', { className: 'rr-demo', style: { background: 'var(--hero)' } }, h(R.Bottone, null, 'Accetto la proposta'), h(R.Bottone, { variante: 'su-scuro' }, 'Ne parliamo'))
+  ));
+</script>
+</body>
+</html>

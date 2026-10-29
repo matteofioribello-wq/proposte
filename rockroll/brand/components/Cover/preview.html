@@ -1,0 +1,50 @@
+<!-- @dsCard height=288 -->
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Rock&amp;Roll Studio</title>
+<style>
+  html, body { margin:0; height:100%; }
+  body { background:var(--surface); color:var(--ink); font-family:var(--font-sans); overflow:hidden; }
+  .cover { position:relative; height:288px; overflow:hidden; }
+  .art { position:absolute; top:0; left:480px; width:480px; height:288px; overflow:hidden; }
+  .art svg { display:block; width:480px; height:288px; }
+  .steel { fill:var(--acciaio); }
+  .yellow { fill:var(--giallo); }
+  .brass { fill:var(--ottone); }
+  .slab { fill:var(--hero); }
+  [data-theme="ghisa"] .slab { fill:var(--surface-steel); }
+  .blk { rx:var(--radius-md); }
+  .chip { rx:var(--radius-sm); }
+  .amp { font-family:var(--font-display); font-weight:900; font-size:352px; fill:var(--giallo); }
+  .words { position:absolute; left:var(--space-6); bottom:var(--space-6); max-width:440px; }
+  .name { margin:0; font-family:var(--font-display); font-weight:900; font-size:80px; line-height:.95; color:var(--ink); }
+  .tag { margin:var(--space-2) 0 0 2px; font-size:14px; line-height:20px; color:var(--ink-muted); }
+</style>
+</head>
+<body>
+<div class="cover">
+<div class="art" aria-hidden="true">
+<svg viewBox="0 0 480 288" width="480" height="288">
+<!--
+  blocks      hero (ghisa) slab 256 wide bleeding top, right and bottom · giallo 96×96 · ottone 96×48 · acciaio 112×208 bleeding the bottom — together about a third of 960×288
+  arrangement one tall ghisa slab with three satellites on its left, tops staggered on space-5 steps, space-4 gutters
+  pattern     one oversized & in the display face, giallo, clipped by the slab — the glyph borrowed from the Poster direction is what people remember
+  scales      sides in space-4 multiples; gutters space-4; corners radius-md on blocks, radius-sm on the ottone chip
+-->
+<defs><clipPath id="slabclip"><rect x="240" y="-16" width="256" height="320"/></clipPath></defs>
+<rect class="steel blk" x="0" y="96" width="112" height="208" rx="10"/>
+<rect class="yellow blk" x="128" y="48" width="96" height="96" rx="10"/>
+<rect class="brass chip" x="128" y="160" width="96" height="48" rx="4"/>
+<rect class="slab" x="240" y="-16" width="256" height="320"/>
+<text class="amp" x="262" y="318" clip-path="url(#slabclip)">&amp;</text>
+</svg>
+</div>
+<div class="words">
+<h1 class="name">Rock&amp;Roll<br>Studio</h1>
+<p class="tag">Siti web ricavati dal pieno.</p>
+</div>
+</div>
+</body>
+</html>
