@@ -34,3 +34,4 @@ Niente demo, mockup o screenshot del sito nuovo prima del brief: la grafica si s
 
 - `gnali/`: cliente «tecnologico», proposta a prezzo chiuso, 9 pagine.
 - `fiorini/`: cliente piccolo e «poco tecnologico», 11 pagine: Chi siamo con foto, blocchi A (sito) · B (strumenti fai da te) · C (canone mensile) · D (pubblicità), tre combinazioni. Niente gergo.
+- `italtap/`, `foker/`: generati con `genera.py` dai file in `dati/` (stessa struttura di `fiorini/`). Per un nuovo cliente: copia un file dati, cambia i testi, poi `python genera.py dati/cliente.py cliente/deck.html` (servono `deckhead.html` e `deckstyle2.html`, cioè testata e stili di `fiorini/deck.html`).
