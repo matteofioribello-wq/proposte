@@ -29,3 +29,8 @@ Niente demo, mockup o screenshot del sito nuovo prima del brief: la grafica si s
 
 3. Niente `box-shadow` né filtri: su iPhone il PDF si rompe.
 4. Copia il PDF in `public/<cliente>/` e linkalo dalla pagina di sintesi.
+
+## Modelli
+
+- `gnali/`: cliente «tecnologico», proposta a prezzo chiuso, 9 pagine.
+- `fiorini/`: cliente piccolo e «poco tecnologico», 11 pagine: Chi siamo con foto, blocchi A (sito) · B (strumenti fai da te) · C (canone mensile) · D (pubblicità), tre combinazioni. Niente gergo.

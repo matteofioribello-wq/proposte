@@ -27,7 +27,8 @@ Scelta: **B, con un prestito da A** (la & gigante per hero e social). PDF origin
 - **Colori:** ghisa `#1C1E20`, acciaio `#C9CED1`, bianco officina `#F4F4F1`, giallo sicurezza `#FFC21A` (solo segnale), ottone `#B8862E` (solo dettagli). Due temi: Officina (chiaro) e Ghisa (scuro).
 - **Caratteri:** Big Shoulders Display e Stencil per titoli e timbri, Archivo per i testi, IBM Plex Mono per prezzi, date e matricole.
 - **Timbri del collaudo** (componente nato per gli audit): Fuori norma, Da rifare, Da tenere, Collaudato.
-- **Persone:** nelle proposte il firmatario è solo «Rock&Roll Studio». Niente foto né sezione Chi siamo quando i clienti non devono vedere le persone (la foto di Simone esiste nel design system ma non è in questo repo).
+- **Persone (aggiornato 5 novembre):** ogni proposta ha di nuovo la pagina Chi siamo, con foto. Simone = fiducia locale e imprenditoriale (lumezzanese, imprenditore, il riferimento che passa dal cliente); Matteo = fiducia tecnica (Product & Growth Manager di iMamma, costruisce). Si dice che ci conosciamo da anni e abbiamo già fatto insieme tanti progetti digitali. Firma: «Rock&Roll Studio · Matteo & Simone».
+- **Struttura delle proposte ai clienti piccoli (5 novembre):** blocchi A (sito, obbligatorio) · B (strumenti che prepariamo noi e il cliente usa da solo) · C (canone mensile di aiuto, anche comunicazione) · D (pubblicità: avvio, gestione, contenuti) + pagina con tre combinazioni. Clienti «poco tecnologici»: niente gergo.
 - **Footer:** senza dati fiscali per ora.
 - **Brand personale di Matteo:** design system separato, partendo dalla pagina I.GO. Matteo indica a ogni proposta se è «personale» o «Rock&Roll».
 - Contratti e condizioni: rimandati.
