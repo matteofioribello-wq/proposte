@@ -31,9 +31,11 @@ Scelta: **B, con un prestito da A** (la & gigante per hero e social). PDF origin
 - **Footer:** senza dati fiscali per ora.
 - **Brand personale di Matteo:** design system separato, partendo dalla pagina I.GO. Matteo indica a ogni proposta se è «personale» o «Rock&Roll».
 - Contratti e condizioni: rimandati.
+- **Niente demo prima del brief** (5 novembre): nelle proposte non si mostrano demo, mockup o screenshot del sito nuovo. La grafica si sceglie dopo il brief (brief, call di 45 minuti, home in una settimana). Con I.GO le demo fatte senza informazioni hanno spostato la discussione sul colore.
+- **PDF per ogni cliente:** presentazione 16:9 con link a brief e analisi, modello in [../deck/](../deck/README.md).
 
 ## Dove sta il resto
 
 - Design system su claude.ai: artefatto «Rock&Roll Studio» (tipo Design System). Questa cartella è la copia in repo, senza la foto di Simone.
 - Modelli di proposta: artefatti «Modello proposta Rock&Roll Studio» e «Modello proposta Matteo Fioribello».
-- Prima proposta: `../public/gnali/` (analisi e demo A, B, C).
+- Prima proposta: `../public/gnali/` (sintesi, analisi, PDF).
