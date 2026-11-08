@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<title>Ital-Tap · Proposta Rock&amp;Roll Studio</title>
+<style>
+@font-face{font-family:"BSD";src:url(../../brand/fonts/BigShouldersDisplay-VF.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"BSS";src:url(../../brand/fonts/BigShouldersStencilDisplay-VF.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"Archivo";src:url(../../brand/fonts/Archivo-VF.woff2) format("woff2");font-weight:100 900}
+@font-face{font-family:"Plex";src:url(../../brand/fonts/IBMPlexMono-Regular.woff2) format("woff2");font-weight:400}
+@font-face{font-family:"Plex";src:url(../../brand/fonts/IBMPlexMono-Medium.woff2) format("woff2");font-weight:500}
+@page{size:1456px 819px;margin:0}
+:root{--surface:#F4F4F1;--raised:#FFFFFF;--steel:#E6E8E5;--line:#DDE0E2;--ink:#1C1E20;--muted:#4B5054;--hero:#1C1E20;--onhero:#E9ECEE;--onhero-m:#A9B0B4;--giallo:#FFC21A;--ottone:#B8862E;--ottone-ink:#7A5716;--acciaio:#C9CED1}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{background:var(--surface)}
+body{font-family:Archivo,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+a{color:inherit;text-decoration:none}
+.slide{width:1456px;height:819px;position:relative;overflow:hidden;page-break-after:always;break-after:page;background:var(--surface);padding:64px 86px 0}
+.slide:last-child{page-break-after:auto;break-after:auto}
+.dark{background:var(--hero);color:var(--onhero);background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.025) 0,rgba(255,255,255,.025) 1px,transparent 1px,transparent 3px)}
+.label{font-family:Plex,monospace;font-weight:500;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:12px}
+.label:before{content:"";width:28px;height:3px;background:var(--giallo)}
+.dark .label{color:var(--onhero-m)}
+.nolead:before{display:none}
+h1,h2,.disp{font-family:BSD,"Arial Narrow",sans-serif;font-weight:900;text-transform:uppercase;line-height:.95;letter-spacing:.005em}
+h2{font-size:58px;margin-top:14px}
+.intro{font-size:19px;line-height:1.5;color:var(--muted);margin-top:14px;max-width:1080px}
+.dark .intro{color:#C9CED1}
+.hl{background:var(--giallo);color:var(--ink);padding:0 8px}
+.foot{position:absolute;left:86px;right:86px;bottom:0;height:62px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;font-family:Plex,monospace;font-size:12px;color:var(--muted);letter-spacing:.04em}
+.foot .l{display:flex;align-items:center;gap:14px}
+.foot img{height:15px}
+.dark .foot{border-color:#3A3F44;color:var(--onhero-m)}
+.card{background:var(--raised);border:1px solid var(--line);border-radius:10px;padding:28px}
+.mono{font-family:Plex,monospace}
+/* timbri */
+.stamp{display:inline-block;font-family:BSS,sans-serif;font-weight:900;text-transform:uppercase;font-size:21px;letter-spacing:.04em;padding:5px 12px 3px;border-radius:4px;transform:rotate(-2.5deg)}
+.st-fuori{background:var(--giallo);color:var(--ink);border:2.5px solid var(--ink)}
+.st-rifare{background:#fff;color:var(--ink);border:2.5px solid var(--ink)}
+.st-tenere{background:#fff;color:var(--ottone-ink);border:2.5px solid var(--ottone)}
+.st-coll{background:var(--ink);color:var(--giallo);border:2.5px solid var(--giallo)}
+.num{font-family:BSS,sans-serif;font-weight:900;line-height:.9}
+/* consiglio */
+.consiglio{background:var(--giallo);color:var(--ink);border-radius:10px;padding:22px 28px;display:flex;gap:22px;align-items:center}
+.consiglio .t{font-family:BSD,sans-serif;font-weight:900;text-transform:uppercase;font-size:26px;line-height:1}
+.consiglio .s{font-size:16px;line-height:1.45;margin-top:6px}
+.consiglio .k{font-family:Plex,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.plettro{width:46px;flex:none}
+/* cta */
+.cta{display:flex;align-items:center;justify-content:space-between;border-radius:10px;padding:26px 30px}
+.cta .k{font-family:Plex,monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+.cta .t{font-family:BSD,sans-serif;font-weight:900;text-transform:uppercase;font-size:34px;line-height:1;margin-top:8px}
+.cta .u{font-family:Plex,monospace;font-size:13px;margin-top:8px}
+.cta .arr{font-size:40px;font-family:Archivo;font-weight:300}
+.cta-y{background:var(--giallo);color:var(--ink)}
+.cta-d{background:var(--hero);color:var(--onhero)}
+.cta-o{border:2px solid #C9CED1;color:var(--onhero)}
+.stripe{height:16px;background:repeating-linear-gradient(-45deg,var(--giallo) 0,var(--giallo) 14px,var(--ink) 14px,var(--ink) 28px)}
+</style>

@@ -46,7 +46,7 @@ def build(c):
       <p style="font-size:16px;line-height:1.5;color:#C9CED1;margin-top:14px">{c['alert_text']}</p>
     </div>
   </div>
-  <div style="position:absolute;left:86px;bottom:66px;font-family:Plex;font-size:14px;color:var(--onhero-m);letter-spacing:.04em">ROCK&amp;ROLL STUDIO · MATTEO &amp; SIMONE · PROPOSTA DEL 5 NOVEMBRE 2026</div>
+  <div style="position:absolute;left:86px;bottom:66px;font-family:Plex;font-size:14px;color:var(--onhero-m);letter-spacing:.04em">ROCK&amp;ROLL STUDIO · MATTEO &amp; SIMONE · PROPOSTA DEL {c.get('data','5 novembre 2026').upper()}</div>
   <div class="stripe" style="position:absolute;left:0;right:0;bottom:0"></div>
 </section>''')
     # 2 found
@@ -61,7 +61,7 @@ def build(c):
     s.append(f'''<section class="slide">
   <div class="label">01 · Cosa abbiamo trovato</div>
   <h2>{c['found_title']}</h2>
-  <p class="intro">Abbiamo aperto {c['domain']} dal telefono e dal computer il 5 novembre 2026 e letto le pagine, senza accessi riservati.</p>
+  <p class="intro">Abbiamo aperto {c['domain']} dal telefono e dal computer il {c.get('data','5 novembre 2026')} e letto le pagine, senza accessi riservati.</p>
   <div style="display:grid;grid-template-columns:230px 1fr 1fr;gap:18px;margin-top:24px">
     <div style="grid-row:span 2;height:470px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:#fff;position:relative"><img src="oggi-mobile.png" style="width:100%;height:100%;object-fit:cover;object-position:top" alt="Il sito oggi dal telefono"><div style="position:absolute;left:0;right:0;bottom:0;background:var(--hero);color:#fff;font-family:Plex;font-size:11px;padding:8px 10px">Il sito oggi, dal telefono</div></div>
     {cards}
@@ -119,7 +119,7 @@ def build(c):
     </div>'''
     s.append(f'''<section class="slide">
   <div class="label">02 · Come è fatta la proposta</div>
-  <h2>Quattro blocchi. Il primo serve,<br>gli altri li scegliete voi</h2>
+  <h2>{c.get('blocks_title','Quattro blocchi. Il primo serve,<br>gli altri li scegliete voi')}</h2>
   <p class="intro">Ogni blocco ha la sua pagina e il suo prezzo. Si possono aggiungere anche dopo, quando vi serve.</p>
   <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:28px">{blk}</div>
   <div class="consiglio" style="margin-top:18px;padding:16px 28px">
@@ -229,6 +229,15 @@ def build(c):
   </div>
   {foot('Prezzi IVA esclusa · validità 30 giorni · budget degli annunci a parte', 9)}
 </section>''')
+    # pagine extra (es. passaparola), dopo il riepilogo
+    for i, (label, title, intro, inner, note) in enumerate(c.get('extra', [])):
+        s.append(f'''<section class="slide">
+  <div class="label">{label}</div>
+  <h2>{title}</h2>
+  <p class="intro" style="margin-top:8px">{intro}</p>
+  {inner}
+  {foot(note or L, 10 + i)}
+</section>''')
     # 10 tempi
     steps = ''
     for i, (t, w, d) in enumerate(c['steps']):
@@ -243,13 +252,13 @@ def build(c):
     <div style="background:var(--giallo);border-radius:10px;padding:22px 26px"><div class="mono" style="font-size:12px;letter-spacing:.14em;font-weight:500">{c['t_box1'][0]}</div><div class="disp" style="font-size:36px;margin-top:8px">{c['t_box1'][1]}</div></div>
     <div style="background:var(--steel);border-radius:10px;padding:22px 26px"><div class="mono" style="font-size:12px;letter-spacing:.14em;font-weight:500;color:var(--muted)">{c['t_box2'][0]}</div><div class="disp" style="font-size:36px;margin-top:8px">{c['t_box2'][1]}</div></div>
   </div>
-  {foot(L, 10)}
+  {foot(L, 10 + len(c.get('extra', [])))}
 </section>''')
     # 11 next
     s.append(f'''<section class="slide dark" style="padding-top:110px">
   <img src="{B}rr-ampersand.svg" style="position:absolute;right:-80px;top:40px;height:720px;opacity:.08" alt="">
   <div class="label">Prossimo passo</div>
-  <h1 style="font-size:84px;margin-top:20px;color:#fff">Dieci minuti di questionario,<br><span style="color:var(--giallo)">entro venerdì 27 novembre</span></h1>
+  <h1 style="font-size:84px;margin-top:20px;color:#fff">Dieci minuti di questionario,<br><span style="color:var(--giallo)">entro {c.get('scadenza','venerdì 27 novembre')}</span></h1>
   <p style="font-size:20px;line-height:1.5;color:#C9CED1;margin-top:22px;max-width:1000px">Poche domande, si risponde anche dal telefono. Diteci anche quale combinazione vi interessa: in due giorni lavorativi vi confermiamo il prezzo fisso e le date.</p>
   <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;position:relative">
     <a class="cta cta-y" href="https://tally.so/r/{c['tally']}?da=pdf">
@@ -261,7 +270,7 @@ def build(c):
   </div>
   <div style="position:absolute;left:86px;right:86px;bottom:60px;display:flex;align-items:center;gap:22px">
     <img src="{B}rr-plettro.svg" style="height:46px" alt="">
-    <div><div class="disp" style="font-size:24px;color:#fff">Rock&amp;Roll Studio · Matteo &amp; Simone</div><div class="mono" style="font-size:13px;color:var(--onhero-m);margin-top:4px">Siti web ricavati dal pieno · Proposta del 5 novembre 2026, valida 30 giorni</div></div>
+    <div><div class="disp" style="font-size:24px;color:#fff">Rock&amp;Roll Studio · Matteo &amp; Simone</div><div class="mono" style="font-size:13px;color:var(--onhero-m);margin-top:4px">{c.get('payoff','Siti web ricavati dal pieno')} · Proposta del {c.get('data','5 novembre 2026')}, valida 30 giorni</div></div>
   </div>
   <div class="stripe" style="position:absolute;left:0;right:0;bottom:0;height:12px"></div>
 </section>''')
