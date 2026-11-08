@@ -32,7 +32,7 @@ lead="Abbiamo guardato outdoorsolutions.it come lo guarda il titolare di un bar 
 alert_label="Trovato in «Informazioni aziendali»", alert_title="⚠ Il telefono<br>è sbagliato",
 alert_text='Il numero è scritto «+344 0945467»: manca il +39. <b style="color:#fff">Chi lo copia o lo tocca dal telefono non vi trova.</b> Si sistema in un minuto.',
 found_title="Quattro cose che un cliente nota subito",
-found=[("Fuori norma", "Dal telefono, nessuna porta", "La prima schermata è una foto: niente titolo, niente «chiamaci». L'icona per l'accessibilità copre il logo e l'avviso dei cookie esce dallo schermo. " + K + "Chi arriva da un annuncio se ne va.</b>"),
+found=[("Fuori norma", "Dal telefono, nessuna porta", "La prima schermata è solo una foto: niente titolo che dica cosa fate, niente pulsante «chiamaci». Per capirlo bisogna scorrere oltre l'avviso dei cookie. " + K + "Chi arriva da un annuncio se ne va.</b>"),
 ("Da rifare", "Nessuno conta le richieste", "Sul sito non c'è nessuno strumento di misura: né Google Analytics né il pixel di Meta. " + K + "Oggi non si sa quante richieste arrivano né da dove: la pubblicità andrebbe al buio.</b>"),
 ("Da rifare", "Un carrello per un dehors", "44 prodotti, da 565 a 14.500 €, con «Aggiungi al carrello». Un bar o un architetto vuole un sopralluogo e un preventivo. " + K + "Il pulsante giusto è «Chiedi un sopralluogo».</b>"),
 ("Da tenere", "Marchi che si vendono da soli", "Bromic, Heatscope, Favex, Manutti; noleggio operativo, assistenza 24 ore su 24, rivenditori in tutta Italia, eventi aggiornati. " + K + "La sostanza c'è: va messa davanti a chi cerca.</b>")],
