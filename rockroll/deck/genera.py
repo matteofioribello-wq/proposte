@@ -52,7 +52,7 @@ def build(c):
     # 2 found
     cards = ''
     for stamp, title, text in c['found']:
-        cls = {'Fuori norma': 'st-fuori', 'Da rifare': 'st-rifare', 'Da tenere': 'st-tenere'}[stamp]
+        cls = {'Da sistemare': 'st-fuori', 'Fuori norma': 'st-fuori', 'Da rifare': 'st-rifare', 'Da tenere': 'st-tenere'}[stamp]
         cards += f'''<div class="card" style="padding:20px 24px">
       <span class="stamp {cls}" style="font-size:18px">{stamp}</span>
       <div class="disp" style="font-size:27px;margin-top:12px">{title}</div>

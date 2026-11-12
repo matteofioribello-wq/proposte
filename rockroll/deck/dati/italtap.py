@@ -7,7 +7,7 @@ lead="Abbiamo guardato italtap.com come lo guarda un ufficio acquisti che cerca 
 alert_label="Trovato nella pagina principale", alert_title="⚠ Testo nascosto<br>sui casinò",
 alert_text='Un testo pubblicitario con link a casinò online, invisibile ai visitatori ma letto da Google. <b style="color:#fff">Va tolto subito, a prescindere dal sito nuovo.</b>',
 found_title="Quattro cose che un cliente nota subito",
-found=[("Fuori norma", "Il sito è stato violato", "Nella pagina principale c'è un testo nascosto che pubblicizza casinò online, con link a siti di gioco. " + K + "I clienti non lo vedono, Google sì: si rischia di finire tra i siti segnalati.</b>"),
+found=[("Da sistemare", "Il sito è stato violato", "Nella pagina principale c'è un testo nascosto che pubblicizza casinò online, con link a siti di gioco. " + K + "I clienti non lo vedono, Google sì: si rischia di finire tra i siti segnalati.</b>"),
 ("Da rifare", "Un disegno non si può mandare", "Il modulo contatti chiede solo nome, email e messaggio. " + K + "Per le lavorazioni a disegno, il vostro punto forte, non si può allegare un file.</b>"),
 ("Da rifare", "Gallerie, non un catalogo", "Dieci linee di prodotto fatte di foto, senza codici, misure o schede da scaricare. " + K + "Chi cerca un articolo preciso deve telefonare.</b>"),
 ("Da tenere", "Ciclo integrale, dal 2003", "Stampi, attrezzature e macchine transfer in casa, sito già in italiano e inglese. " + K + "La sostanza c'è: va solo mostrata meglio.</b>")],

@@ -10,7 +10,7 @@ Niente demo, mockup o screenshot del sito nuovo prima del brief: la grafica si s
 
 1. Copertina con logo del cliente e la battuta
 2. In sintesi: calendario in tre date, prezzo, pulsanti Brief e Analisi
-3. Cosa abbiamo trovato (timbri Fuori norma, Da rifare, Da tenere)
+3. Cosa abbiamo trovato (timbri Da sistemare, Da rifare, Da tenere)
 4. Cosa proponiamo
 5. La grafica la scegliamo insieme, dopo il brief
 6. Risultati misurabili dal lancio

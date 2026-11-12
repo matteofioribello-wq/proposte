@@ -7,7 +7,7 @@ lead="Abbiamo guardato foker.com come lo guarda un rivenditore, o un cliente con
 alert_label="La prima cosa che si vede", alert_title="⚠ «Questo plug-in<br>non è supportato»",
 alert_text="Al centro della pagina principale c'è un riquadro grigio: è un'animazione Flash, che i browser non leggono più da anni.",
 found_title="Quattro cose che un rivenditore nota subito",
-found=[("Fuori norma", "Un buco al centro della home", "Il riquadro principale usa Flash, spento in tutti i browser dal 2021. " + K + "Al suo posto si legge «Questo plug-in non è supportato».</b>"),
+found=[("Da sistemare", "Un buco al centro della home", "Il riquadro principale usa Flash, spento in tutti i browser dal 2021. " + K + "Al suo posto si legge «Questo plug-in non è supportato».</b>"),
 ("Da rifare", "Dal telefono non si legge", "Le pagine sono costruite per lo schermo di un computer e non si adattano: " + K + "dal telefono va tutto ingrandito con le dita.</b>"),
 ("Da rifare", "Nessun modulo, blog a parte", "Per contattarvi ci sono solo indirizzi email e le novità vivono su un blog separato. " + K + "Chi vuole diventare rivenditore non ha una strada.</b>"),
 ("Da tenere", "Nove linee, 35 schede", "Lampade, fornelli, barbecue, saldatori, bombole: schede PDF, certificazioni, italiano e inglese. " + K + "Il materiale c'è: va solo rimesso in vetrina.</b>")],
