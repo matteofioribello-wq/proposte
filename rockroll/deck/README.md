@@ -1,6 +1,6 @@
 # Presentazione PDF per i clienti
 
-Ogni cliente riceve un PDF 16:9 (9 pagine) con i link al brief su Tally e all'analisi completa. Stesso schema della proposta I.GO, grafica Rock&Roll.
+Ogni cliente riceve un PDF 16:9 (9 pagine) con i link al brief su Tally e all'analisi completa. Stesso schema della proposta I.GO, grafica Rock ’n’ Roll Studio (opzione G, vedi docs/brand.md nel repo del sito).
 
 ## Regola
 

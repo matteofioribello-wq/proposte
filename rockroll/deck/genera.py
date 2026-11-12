@@ -1,11 +1,11 @@
-import sys, os
+import re, sys, os
 S = os.path.dirname(os.path.abspath(__file__))
 HEAD = open(os.path.join(S, 'deckhead.html'), encoding='utf-8').read()
 STYLE2 = open(os.path.join(S, 'deckstyle2.html'), encoding='utf-8').read()
 B = '../../brand/logos/svg/'
 
 def foot(left, n, dark=False):
-    logo = 'rr-wordmark-su-scuro.svg' if dark else 'rr-wordmark-su-chiaro.svg'
+    logo = 'rr-logo-compatto-su-scuro.svg' if dark else 'rr-logo-compatto-su-chiaro.svg'
     return f'<div class="foot"><div class="l"><img src="{B}{logo}" alt="">{left}</div><div>Matteo &amp; Simone · {n}</div></div>'
 
 def svc(title, desc, price, unit, rec=False, h=230):
@@ -29,11 +29,11 @@ def build(c):
     # 1 cover
     s.append(f'''<section class="slide dark" style="padding:0">
   <div style="padding:56px 86px 0;display:flex;align-items:center;gap:22px">
-    <img src="{B}rr-wordmark-su-scuro.svg" style="height:30px" alt="Rock&Roll Studio">
+    <img src="{B}rr-logo-su-scuro.svg" style="height:46px" alt="Rock ’n’ Roll Studio">
     <span style="font-family:Plex;color:var(--onhero-m);font-size:22px">×</span>
     <span style="background:#fff;border-radius:8px;padding:8px 14px;display:inline-flex"><img src="{c['logo']}" style="height:48px" alt="{c['name']}"></span>
   </div>
-  <img src="{B}rr-ampersand.svg" style="position:absolute;right:-60px;top:70px;height:760px;opacity:.10" alt="">
+  <img src="{B}rr-sigla-su-scuro.svg" style="position:absolute;right:-60px;top:70px;height:760px;opacity:.10" alt="">
   <div style="padding:52px 86px 0;display:grid;grid-template-columns:1fr 420px;gap:56px;align-items:end">
     <div>
       <div class="label">Proposta · il nuovo sito {c['domain']}</div>
@@ -46,7 +46,7 @@ def build(c):
       <p style="font-size:16px;line-height:1.5;color:#C9CED1;margin-top:14px">{c['alert_text']}</p>
     </div>
   </div>
-  <div style="position:absolute;left:86px;bottom:66px;font-family:Plex;font-size:14px;color:var(--onhero-m);letter-spacing:.04em">ROCK&amp;ROLL STUDIO · MATTEO &amp; SIMONE · PROPOSTA DEL {c.get('data','5 novembre 2026').upper()}</div>
+  <div style="position:absolute;left:86px;bottom:66px;font-family:Plex;font-size:14px;color:var(--onhero-m);letter-spacing:.04em">ROCK ’N’ ROLL STUDIO · SITI WEB PER LE AZIENDE · MATTEO E SIMONE · PROPOSTA DEL {c.get('data','5 novembre 2026').upper()}</div>
   <div class="stripe" style="position:absolute;left:0;right:0;bottom:0"></div>
 </section>''')
     # 2 found
@@ -93,7 +93,7 @@ def build(c):
   <div style="display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:16px;margin-top:18px">
     <div style="background:var(--hero);color:var(--onhero);border-radius:10px;padding:20px 22px">
       <div class="disp" style="font-size:22px;color:var(--giallo)">Ci conosciamo da anni</div>
-      <p style="font-size:14.5px;line-height:1.5;color:#C9CED1;margin-top:6px">Abbiamo già portato avanti insieme tanti progetti digitali. Rock&amp;Roll Studio è il modo per farlo anche per le aziende del nostro distretto.</p>
+      <p style="font-size:14.5px;line-height:1.5;color:#C9CED1;margin-top:6px">Abbiamo già portato avanti insieme tanti progetti digitali. Rock ’n’ Roll Studio è il modo per farlo anche per le aziende del nostro distretto.</p>
     </div>
     <div class="card" style="padding:20px 22px">
       <div class="disp" style="font-size:22px">{c['why2_t']}</div>
@@ -256,7 +256,7 @@ def build(c):
 </section>''')
     # 11 next
     s.append(f'''<section class="slide dark" style="padding-top:110px">
-  <img src="{B}rr-ampersand.svg" style="position:absolute;right:-80px;top:40px;height:720px;opacity:.08" alt="">
+  <img src="{B}rr-sigla-su-scuro.svg" style="position:absolute;right:-80px;top:40px;height:720px;opacity:.08" alt="">
   <div class="label">Prossimo passo</div>
   <h1 style="font-size:84px;margin-top:20px;color:#fff">Dieci minuti di questionario,<br><span style="color:var(--giallo)">entro {c.get('scadenza','venerdì 27 novembre')}</span></h1>
   <p style="font-size:20px;line-height:1.5;color:#C9CED1;margin-top:22px;max-width:1000px">Poche domande, si risponde anche dal telefono. Diteci anche quale combinazione vi interessa: in due giorni lavorativi vi confermiamo il prezzo fisso e le date.</p>
@@ -269,12 +269,13 @@ def build(c):
     </div>
   </div>
   <div style="position:absolute;left:86px;right:86px;bottom:60px;display:flex;align-items:center;gap:22px">
-    <img src="{B}rr-plettro.svg" style="height:46px" alt="">
-    <div><div class="disp" style="font-size:24px;color:#fff">Rock&amp;Roll Studio · Matteo &amp; Simone</div><div class="mono" style="font-size:13px;color:var(--onhero-m);margin-top:4px">{c.get('payoff','Siti web ricavati dal pieno')} · Proposta del {c.get('data','5 novembre 2026')}, valida 30 giorni</div></div>
+    <img src="{B}rr-sigla-su-scuro.svg" style="height:56px" alt="">
+    <div><div class="disp" style="font-size:24px;color:#fff">Rock ’n’ Roll Studio · Matteo &amp; Simone</div><div class="mono" style="font-size:13px;color:var(--onhero-m);margin-top:4px">{c.get('payoff','Siti web seri. Noi, un po’ meno.')} · Proposta del {c.get('data','5 novembre 2026')}, valida 30 giorni</div></div>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:12px;border:2px solid #A9B0B4;padding:4px 16px"><span class="mono" style="font-size:11px;color:var(--onhero-m);letter-spacing:.12em">FIRMATO</span><img src="{B}rr-firma-chiaro.svg" style="height:78px" alt="Firma Rock ’n’ Roll Studio"></div>
   </div>
   <div class="stripe" style="position:absolute;left:0;right:0;bottom:0;height:12px"></div>
 </section>''')
-    head = HEAD.replace('<title>Casa dei Bambini T. Fiorini · Proposta Rock&amp;Roll Studio</title>', f'<title>{c["name"]} · Proposta Rock&amp;Roll Studio</title>')
+    head = re.sub(r'<title>.*?</title>', f'<title>{c["name"]} · Proposta Rock ’n’ Roll Studio</title>', HEAD)
     return head + STYLE2 + '\n</head>\n<body>\n' + '\n\n'.join(s) + '\n</body>\n</html>\n'
 
 if __name__ == '__main__':
